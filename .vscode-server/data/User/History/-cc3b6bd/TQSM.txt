@@ -1,0 +1,2 @@
+ {'learning_rate': 8.097688329162332e-05, 'hidden_size': 192, 'num_layers': 1, 'dropout': 0.1820088098820616, 'batch_size': 64, 'epochs': 250, 'patience': 20, 'delta': 0.008535437945169335, 'clip_value': 0.7, 'eta': 4.412418664183598e-06, 'threshold_label_1': 0.4, 'threshold_label_2': 0.25, 'threshold_label_3': 0.25, 'threshold_label_4': 0.25, 'threshold_label_5': 0.15000000000000002, 'threshold_label_6': 0.4}. Best is trial 5 with value: 0.37774622440338135.
+Fold 0

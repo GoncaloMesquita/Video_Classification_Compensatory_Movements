@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "AcT",
+                "--input_size", "99",
+                "--hidden_size", "1",
+                "--num_layers", "1",
+                "--num_labels", "6",
+                "--dropout", "0.16178128484736642",
+                "--batch_size", "128",
+                "--epochs", "10",
+                "--learning_rate", "2.980448565544344e-07",
+                "--patience", "15",
+                "--delta", "0.0",
+                "--clip_value", "0.9",
+                "--threshold", "0.2", "0.4", "0.150", "0.35", "0.150", "0.35",
+                "--eta", "0.0008269904306641726",
+                "--mode", "train",
+                "--data_label", "dataset/labels_per_person.pt",
+                "--data_skeletons", "dataset/data_skeletons_per_person.pt",
+                "--checkpoint", "Results/AcT/AcT_fine_tune_ll_bs64_lr2.900e-07_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta8.270e-04_ptTrue/AcT_best.pth",
+                "--save_dir", "Results/",
+                "--n_device", "3"
+            ]
+        }
+    ]
+}
+

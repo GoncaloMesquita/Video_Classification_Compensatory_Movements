@@ -1,0 +1,16 @@
+learning_rate: 2.900448565544344e-07
+hidden_size: 1
+num_layers: 1
+dropout: 0.16178128484736642
+batch_size: 64
+epochs: 150
+patience: 15
+delta: 0.0
+clip_value: 0.9000000000000001
+eta: 0.0008269904306641726
+threshold_label_1: 0.2
+threshold_label_2: 0.4
+threshold_label_3: 0.15000000000000002
+threshold_label_4: 0.35
+threshold_label_5: 0.15000000000000002
+threshold_label_6: 0.35

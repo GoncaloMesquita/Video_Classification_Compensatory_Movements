@@ -1,0 +1,40 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "python.defaultInterpreterPath": "C:\\Users\\gonca\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Ubuntu-20.04 (WSL)": {
+            "path": "C:\\windows\\System32\\wsl.exe",
+            "args": [
+                "-d",
+                "Ubuntu-20.04"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "python.createEnvironment.trigger": "off",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "remote.SSH.remotePlatform": {
+        "autonlab": "linux",
+        "lov1": "linux"
+    }
+}

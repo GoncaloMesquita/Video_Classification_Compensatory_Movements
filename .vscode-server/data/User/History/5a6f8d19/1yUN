@@ -1,0 +1,27 @@
+*.log
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore environment or virtualenv folders
+.venv/
+.virtual_env/
+.ssh/
+.nv/
+.local/
+.keras/
+.conda/
+.conda_env/
+.conda_envs/
+
+# Ignore dataset and results
+dataset/
+Results/
+saliency_maps/
+checkpoints/
+
+# Ignore system files
+.DS_Store
+.vscode/
+

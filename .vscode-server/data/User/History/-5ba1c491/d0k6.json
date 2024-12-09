@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".virtual_env/bin/python",
+            "args": [
+                "--model_name", "LSTM",
+                "--input_size", "99",
+                "--hidden_size", "256",
+                "--num_layers", "10",
+                "--num_labels", "6",
+                "--dropout", "0.1",
+                "--batch_size", "128",
+                "--epochs", "300",
+                "--learning_rate", "0.001",
+                "--patience", "100",
+                "--mode", "train",
+                "--data_label", "dataset/data_labels.pt",
+                "--data_skeletons", "dataset/data_skeletons.pt", 
+                "--save_dir", "Results/"
+            ]
+        }
+    ]
+}

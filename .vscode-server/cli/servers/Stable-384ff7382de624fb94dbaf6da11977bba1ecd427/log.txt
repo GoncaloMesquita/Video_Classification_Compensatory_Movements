@@ -1,0 +1,159 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-57e75a54-6c08-41e8-96d3-31029d6b8078
+Extension host agent listening on /tmp/code-57e75a54-6c08-41e8-96d3-31029d6b8078
+
+[11:38:34] 
+
+
+
+
+[11:38:34] Extension host agent started.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:34] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:34] [<unknown>][a60ebc3a][ManagementConnection] New connection established.
+[11:38:34] [<unknown>][48163b71][ExtensionHostConnection] New connection established.
+[11:38:35] [<unknown>][48163b71][ExtensionHostConnection] <3238532> Launched Extension Host Process.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:35] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:36] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:38:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:40:19] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+New EH opened, aborting shutdown
+[11:43:34] New EH opened, aborting shutdown
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:43:37] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:48:38] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:53:39] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[11:58:40] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:03:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.20]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-renderers-1.0.21]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.10.0-linux-x64]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.100.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.1]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.0]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:08:41] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.22.2]: Extension is not compatible with Code 1.94.2. Extension requires: ^1.95.0-20241022.
+[12:28:55] [<unknown>][a60ebc3a][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...

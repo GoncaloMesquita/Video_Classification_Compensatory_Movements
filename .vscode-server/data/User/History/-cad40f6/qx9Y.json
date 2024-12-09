@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "env": {
+                "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+            },
+            "args": [
+                "--model_name", "moment",
+                "--input_size", "99",
+                "--hidden_size", "192",
+                "--num_layers", "1",
+                "--num_labels", "6",
+                "--dropout", "0.16",
+                "--batch_size", "1",
+                "--epochs", "100",
+                "--learning_rate", "0.0001",
+                "--patience", "5",
+                "--delta", "0.0",
+                "--clip_value", "0.9",
+                "--threshold", "0.5", "0.4", "0.5", "0.35", "0.30000000000000004", "0.1",
+                "--eta", "0.0001",
+                "--mode", "test",
+                "--data_label", "dataset/labels_per_person.pt",
+                "--data_skeletons", "dataset/data_skeletons_per_person.pt",
+                "--data_true_dir", "dataset/frame_level_labels.pt",
+                "--checkpoint", "Results/moment/moment_bs16_lr1.000e-04_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta1.000e-05_ptTrue/saved_models/moment_10_best.pth",
+                "--save_dir", "Results/",
+                "--saliency_map",
+                "--method", "grad_cam",
+                "--treshold_labels", "4.5",
+                "--n_device", "2"
+            ],
+
+        }
+    ]
+}

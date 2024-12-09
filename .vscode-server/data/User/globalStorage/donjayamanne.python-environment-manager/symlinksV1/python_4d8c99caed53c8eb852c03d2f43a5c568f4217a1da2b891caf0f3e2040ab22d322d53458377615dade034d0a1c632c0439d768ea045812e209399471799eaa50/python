@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+"/zfsauton2/home/gmesquit/.conda/envs/env_rehabilition/bin/python"   "$@"
+ret=$?
+exit $ret

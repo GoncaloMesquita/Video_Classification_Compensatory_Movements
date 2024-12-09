@@ -1,0 +1,36 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-0e34482c-0b39-4fb9-a587-6e1d1978878a
+Extension host agent listening on /tmp/code-0e34482c-0b39-4fb9-a587-6e1d1978878a
+
+[14:45:11] 
+
+
+
+
+[14:45:13] Extension host agent started.
+[14:45:13] [<unknown>][d8cfe159][ExtensionHostConnection] New connection established.
+[14:45:13] [<unknown>][a9232f75][ManagementConnection] New connection established.
+[14:45:13] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:14] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:14] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:14] [<unknown>][d8cfe159][ExtensionHostConnection] <121865> Launched Extension Host Process.
+[14:45:15] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:15] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:15] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:15] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:16] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:16] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:16] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:17] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.21.2]: This extension is using the API proposal 'lmTools' that is not compatible with the current version of VS Code.
+[14:45:26] [<unknown>][a9232f75][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[14:45:26] [<unknown>][d8cfe159][ExtensionHostConnection] <121865> Extension Host Process exited with code: 0, signal: null.
+Cancelling previous shutdown timeout
+[14:45:26] Cancelling previous shutdown timeout
+Last EH closed, waiting before shutting down
+[14:45:26] Last EH closed, waiting before shutting down

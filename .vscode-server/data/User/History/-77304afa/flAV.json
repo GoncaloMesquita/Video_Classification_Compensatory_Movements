@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--model_name", "LSTM",
+                "--input_size", "165",
+                "--hidden_size", "64",
+                "--num_layers", "1",
+                "--num_labels", "6",
+                "--dropout", "0.5",
+                "--batch_size", "32",
+                "--epochs", "30",
+                "--learning_rate", "0.001",
+                "--patience", "30",
+                "--mode", "train",
+                "--data_label", "dataset/labels.npy",
+                "--data_skeletons", "dataset/dataset.npy", 
+                "--save_dir", "Results/",
+            ],
+            "python": "${workspaceFolder}/env_rehabilitation/bin/python"
+        }
+    ]
+}

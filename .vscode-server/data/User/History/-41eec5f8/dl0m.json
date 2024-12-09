@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "moment+dino",
+                "--input_size", "99",
+                "--hidden_size", "192",
+                "--num_layers", "1",
+                "--num_labels", "6",
+                "--dropout", "0.16",
+                "--batch_size", "2",
+                "--epochs", "3",
+                "--learning_rate", "0.0001",
+                "--patience", " 15",
+                "--delta", "0.0",
+                "--clip_value", "0.7",
+                "--threshold", "0.5", "0.4", "0.5", "0.35", "0.30000000000000004", "0.1",
+                "--eta", "0.00001",
+                "--mode", "train",
+                "--data_label", "dataset/labels_per_person.pt",
+                "--data_skeletons", "dataset/data_skeletons_per_person.pt",
+                "--data_trial", "trials",
+                "--checkpoint", "Results/AcT/AcT_bs16_lr2.900e-06_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta8.270e-04_ptTrue/saved_models/AcT_17_best.pth",
+                "--save_dir", "Results/",
+                "--saliency_map",
+                "--n_device", "3"
+            ]
+        }
+    ]
+}
+
