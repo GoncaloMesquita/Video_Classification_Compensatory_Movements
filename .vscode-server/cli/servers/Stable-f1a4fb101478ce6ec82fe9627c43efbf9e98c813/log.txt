@@ -5,17 +5,69 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to /tmp/code-1aa079af-49a1-453e-aee8-7003d5e468b0
-Extension host agent listening on /tmp/code-1aa079af-49a1-453e-aee8-7003d5e468b0
+Server bound to /tmp/code-52175933-2184-4b8b-aea0-fff366438909
+Extension host agent listening on /tmp/code-52175933-2184-4b8b-aea0-fff366438909
 
-[13:08:01] 
-
-
+[10:20:18] 
 
 
-[13:08:01] Extension host agent started.
-[13:08:01] [<unknown>][85951ea1][ManagementConnection] New connection established.
-[13:08:01] [<unknown>][aa295591][ExtensionHostConnection] New connection established.
-[13:08:02] [<unknown>][aa295591][ExtensionHostConnection] <3456306> Launched Extension Host Process.
+
+
+[10:20:19] Extension host agent started.
+[10:20:19] [<unknown>][404db038][ManagementConnection] New connection established.
+[10:20:19] [<unknown>][945729b0][ExtensionHostConnection] New connection established.
+[10:20:19] Deleted uninstalled extension from disk github.copilot /zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.248.0
+[10:20:19] [<unknown>][945729b0][ExtensionHostConnection] <3667221> Launched Extension Host Process.
 New EH opened, aborting shutdown
-[13:13:01] New EH opened, aborting shutdown
+[10:25:19] New EH opened, aborting shutdown
+[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs1_lr1.000e-04_hs256_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+    at async Object.readdir (node:internal/fs/promises:948:18)
+    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
+    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
+    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs1_lr1.000e-04_hs256_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+}
+[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs3_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+    at async Object.readdir (node:internal/fs/promises:948:18)
+    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
+    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
+    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs3_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+}
+[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs8_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+    at async Object.readdir (node:internal/fs/promises:948:18)
+    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
+    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
+    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs8_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+}
+[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs64_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+    at async Object.readdir (node:internal/fs/promises:948:18)
+    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
+    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
+    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs64_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+}
+[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+    at async Object.readdir (node:internal/fs/promises:948:18)
+    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
+    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
+    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/zfsauton2/home/gmesquit/Results/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
+}
+[12:32:53] [<unknown>][404db038][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
