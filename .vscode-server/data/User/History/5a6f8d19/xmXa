@@ -33,7 +33,6 @@ trials/
 .vscode/
 .python_history
 .wget-hsts
-.bash_history
 .bashrc
-.gitignore
+.gitignor
 

@@ -9,7 +9,6 @@ from captum.attr import LayerGradCam
 from captum.attr import Saliency
 import os
 import pickle
-import numpy as np
 
 
 def pseudo_label(model, test_loader, device, save_dir, model_name, patient, treshold_labels, method):
@@ -62,17 +61,6 @@ def gradient_integrated(test_loader, model_name, model, patient, device, treshol
         # still need to revise this for several batches
         if len(treshold_labels) == 1:
             binary_map = (map[0][0:lengths[0]].sum(dim=1) < treshold_labels).int().detach().cpu().numpy()
-            
-        else:
-            binary_map = np.zeros(map[0][0:lengths[0]].shape[0])
-            for i in range(map[0][0:lengths[0]].shape[0]):
-                if map[0][i].sum() > treshold_labels[1]:
-                    binary_map[i] = 0
-                elif map[0][i].sum() < treshold_labels[0]:
-                    binary_map[i] = 1
-                else:
-                    binary_map[i] = np.nan
-            # binary_map = binary_map.astype(np.float32)
         
         torch.cuda.empty_cache()
         
@@ -181,18 +169,9 @@ def vanilla_gradients(test_loader,  model_name, model, patient, device, treshold
             map[i] = (saliency[i] - saliency[i].min()) / (saliency[i].max() - saliency[i].min())
         
         # still need to revise this for several batches
-        if len(treshold_labels) == 1:
-            binary_map = (map[0][0:lengths[0]].sum(dim=1) < treshold_labels).int().detach().cpu().numpy()
-            
-        else:
-            binary_map = np.zeros(map[0][0:lengths[0]].shape[0])
-            for i in range(map[0][0:lengths[0]].shape[0]):
-                if map[0][i].sum() > treshold_labels[1]:
-                    binary_map[i] = 0
-                elif map[0][i].sum() < treshold_labels[0]:
-                    binary_map[i] = 1
-                else:
-                    binary_map[i] = np.nan
+        binary_map = (map[0][0:lengths[0]].sum(dim=1) < treshold_labels).int().detach().cpu().numpy()
+        
+        torch.cuda.empty_cache()
         
     return binary_map
 

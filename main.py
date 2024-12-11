@@ -318,12 +318,7 @@ def train_II(args):
         
         auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
         auc_test.append(auc_cross)
-        
-        # metrics_cross = metrics(targets, predictions, "test", args.save_dir, args.model_name)
-        # metrics_test.append(metrics_cross)
-        
-    # plotting_loss(np.mean(cross_train_losses, axis=0), np.mean(cross_val_losses, axis=0), i, epoch, args.model_name, args.save_dir, args.batch_size, args.learning_rate)
-    # metrics_evaluate(metrics_test, args.save_dir, args.model_name)
+    
     plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.trainII)
     
     
