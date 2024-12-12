@@ -85,7 +85,7 @@ def objective(trial):
     return val
 
 
-def train_I( args):
+def train_I(args):
     
     args.optuna = False
     cross_train_losses, cross_val_losses, metrics_test, auc_test = [], [], [], []
@@ -306,10 +306,7 @@ def train_II(args):
         cross_val_losses.append(epoch_val_losses)
 
         print("Testing... \n")
-        
-        # if args.mode == 'test' and not args.saliency_map:
-        #     args.checkpoint = f"{args.save_dir}/saved_models/{args.model_name}_{i}_best.pth"
-        
+
         test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
         model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
         model.to(device)
@@ -358,7 +355,7 @@ if __name__ == "__main__":
     parser.add_argument("--save_dir", type=str, default="checkpoints", help="Directory to save the model")
     parser.add_argument("--saliency_map", action='store_true', help="Generate saliency maps")
     parser.add_argument("--method", type=str, default="vanilla", help="Method for generating saliency maps")
-    parser.add_argument("--treshold_labels", type=float, default='4.7', help="Threshold labels for pseudo-labels")
+    parser.add_argument("--treshold_labels", type=float,nargs='+', default='4.7', help="Threshold labels for pseudo-labels")
     parser.add_argument("--trainII", action='store_true', help="Train the second part of the model")
     parser.add_argument("--true_labels", action='store_true', help="Use true labels for training")
     parser.add_argument("--first_label", action='store_true', help="Use true labels for training")

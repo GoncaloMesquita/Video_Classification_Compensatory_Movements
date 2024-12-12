@@ -4,15 +4,18 @@ import torch.optim as optim
 import torch.nn as nn
 import os
 from create_model import create_model
-from utils import EarlyStopping, plotting_loss, create_dataloader, load_data, metrics, plot_auc_curves, plot_auc_test, metrics_evaluate, load_data_video, load_pseudo_label
+from utils.utils import EarlyStopping, plotting_loss, create_dataloader, load_data, metrics, plot_auc_curves, plot_auc_test, metrics_evaluate, load_data_video, load_pseudo_label
 import numpy as np
 from sklearn.model_selection import train_test_split
 import optuna
 from engine import training, validate
+from utils.pseudo_labels import pseudo_labels
+from utils.visualization import visualization
 import torch.cuda.amp
 import torch.backends.cudnn as cudnn
 import pickle
 from tqdm import tqdm
+
 
 def objective(trial):
 
@@ -65,7 +68,7 @@ def objective(trial):
         for epoch in range(epochs):
             
             train_loss = training(model, train_loader, optimizer, criterion, device, args.save_dir, args.model_name, threshold, clip_value, args.optuna, epoch)
-            val_loss, f1_score = validate(model, val_loader, criterion, device, "validation", args.save_dir, args.model_name, threshold, args.optuna, False)
+            val_loss, f1_score = validate(model, val_loader, criterion, device, args.model_name, threshold, args.optuna)
 
             early_stopping(val_loss, model, 0, epoch)
             if early_stopping.early_stop:
@@ -82,26 +85,24 @@ def objective(trial):
     return val
 
 
-def train_I( args):
+def train_I(args):
     
     args.optuna = False
     cross_train_losses, cross_val_losses, metrics_test, auc_test = [], [], [], []
     mean_fpr = np.linspace(1e-6, 1, 100)
     n_splits = 18
-    
+    mode = 'mode'
     X_t_2 , X_val_2, X_test_2 = None, None , None
-    pseudo_labels = {}
     
     fold_save_dir = os.path.join(args.save_dir, f"saved_models")
     os.makedirs(fold_save_dir, exist_ok=True)
     
-    device = torch.device(f'cuda' if torch.cuda.is_available() else 'cpu')
-
+    device = torch.device(f'cuda:{args.n_device}' if torch.cuda.is_available() else 'cpu')
     if torch.cuda.is_available():
         cudnn.benchmark = True
 
     cross_val_data, index_keep = load_data(args.data_label, args.data_skeletons)    
-     
+    
     if args.model_name == 'moment+dino':
         cross_val_data_2 = load_data_video(args.data_label, args.data_trials, index_keep, args.trainII) 
     
@@ -110,43 +111,31 @@ def train_I( args):
         if args.model_name == 'moment+dino':
             
             X_t_2, X_test_2 = cross_val_data_2[i]
-            X_t_2, X_val_2, y_t_2, y_val_2 = train_test_split(X_t_2, y_t, test_size=0.1, random_state=10)
-        
-        if args.saliency_map:
-            m = i+1
-            if m not in pseudo_labels:  
-                pseudo_labels[m] = []
+            X_t_2, X_val_2, y_t_2, y_val_2 = train_test_split(X_t_2, y_t, test_size=args.test_size, random_state=args.random_seed)
         
         if i in [1, 6, 16] and not args.saliency_map:
             continue
         
         print(f"Fold {i}")
-        X_t, X_val, y_t, y_val = train_test_split(X_t, y_t, test_size=0.1, random_state=10)
+        if args.mode == "train" or mode == "test":
         
-        train_loader = create_dataloader(X_t, y_t, args.batch_size, True, args.model_name, args.trainII, X_t_2)
-        val_loader = create_dataloader(X_val, y_val, args.batch_size, False, args.model_name,args.trainII, X_val_2)
-
-        early_stopping = EarlyStopping(patience=args.patience, model_name=args.model_name, learning_rate=args.learning_rate,batch_size = args.batch_size, output_dir=fold_save_dir ,verbose=True, delta=args.delta)
-        model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device)
-        model.to(device)
-        
-        # if not args.saliency_map:
-        if torch.cuda.device_count() > 1:
-            model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
+            X_t, X_val, y_t, y_val = train_test_split(X_t, y_t, test_size=args.test_size, random_state=args.random_seed)
             
-            if isinstance(model, torch.nn.DataParallel):
-                model = model.module
-        
-        criterion = nn.BCEWithLogitsLoss().to(device)
-        optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs, eta_min=args.eta)
-        scaler = torch.cuda.amp.GradScaler()
+            train_loader = create_dataloader(X_t, y_t, args.batch_size, True, args.model_name, args.trainII, X_t_2)
+            val_loader = create_dataloader(X_val, y_val, args.batch_size, False, args.model_name,args.trainII, X_val_2)
 
-        epoch_train_losses = []
-        epoch_val_losses = []
-        
-        if args.mode == "train":
+            early_stopping = EarlyStopping(patience=args.patience, model_name=args.model_name, learning_rate=args.learning_rate,batch_size = args.batch_size, output_dir=fold_save_dir ,verbose=True, delta=args.delta)
+            model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device)
+            model.to(device)
             
+            if torch.cuda.device_count() > 1:
+                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
+                # if isinstance(model, torch.nn.DataParallel):
+                #     model = model.module
+
+            epoch_train_losses = []
+            epoch_val_losses = []
+                
             for epoch in tqdm(range(args.epochs), desc="Epochs"):
                 
                 print(f"Epoch {epoch+1}/{args.epochs}")
@@ -162,7 +151,8 @@ def train_I( args):
                 
                 print("Validation...")
 
-                val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, "validation", args.save_dir, args.model_name, args.threshold, args.optuna, args.saliency_map, scaler, i, args.treshold_labels, args.method)
+                val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
+                
                 plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label)
                 
                 scheduler.step()
@@ -174,50 +164,55 @@ def train_I( args):
                 if early_stopping.early_stop:
                     print("Early stopping")
                     break
-                
-        torch.cuda.empty_cache()
-        cross_train_losses.append(epoch_train_losses)
-        cross_val_losses.append(epoch_val_losses)
+                    
+            torch.cuda.empty_cache()
+            cross_train_losses.append(epoch_train_losses)
+            cross_val_losses.append(epoch_val_losses)
+            mode = 'test'
 
-        print("Testing... \n")
+        elif args.mode == 'pseudo-label':
+            
+            test_loader, criterion, optimizer, scheduler, scaler = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
+            model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
+            model.to(device)
+            if torch.cuda.device_count() > 1:
+                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
+            
+            pseudo_labels(model, test_loader, device, "testing", args.save_dir, args.model_name, scaler, i, args.treshold_labels, args.method)
+
+                    
+        elif args.mode == 'visualization':
+            
+            if i in args.vis_patients:
+                test_loader, criterion, optimizer, scheduler, scaler = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
+                model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
+                model.to(device)
+                if torch.cuda.device_count() > 1:
+                    model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
         
-        # if args.mode == 'test' and not args.saliency_map:
-        #     args.checkpoint = f"{args.save_dir}/{args.model_name}_{i}_best.pth"
+                visualization(model, test_loader, criterion, device, "testing", args.save_dir, args.model_name, scaler, i, args.treshold_labels, args.method)
             
-        if args.mode == 'test' and args.saliency_map:
-            if args.model_name == 'moment':    
-                args.checkpoint = f'Results/moment/moment_bs16_lr1.000e-04_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta1.000e-05_ptTrue/saved_models/moment_{i}_best.pth'
-            elif args.model_name == 'LSTM':
-                args.checkpoint = f'Results/LSTM/LSTM_newdata_cross_bs16_lr6.161e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta9.548e-05_ptTrue/saved_models/LSTM_{i}_best.pth'
+        if args.mode == 'test' or mode == 'test':    
             
-        test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
-        model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
-        model.to(device)
-        if torch.cuda.device_count() > 1:
-            model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
-            if isinstance(model, torch.nn.DataParallel):
-                    model = model.module
-            
+            test_loader, criterion, optimizer, scheduler, scaler = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
+            model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
+            model.to(device)
+            if torch.cuda.device_count() > 1:
+                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
         
-        if args.saliency_map:
-            pseudo_labels[m].append(validate(model, test_loader, criterion, device, "testing", args.save_dir, args.model_name, args.threshold, False, args.saliency_map, scaler, i, args.treshold_labels, args.method))
-        else:   
-            _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, "testing", args.save_dir, args.model_name, args.threshold, False, args.saliency_map, scaler, i, args.treshold_labels, args.method)
+            _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold)
+            
         
             auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
             auc_test.append(auc_cross)
             
             metrics_cross = metrics(targets, predictions, "test", args.save_dir, args.model_name)
             metrics_test.append(metrics_cross)
-        
-    # plotting_loss(np.mean(cross_train_losses, axis=0), np.mean(cross_val_losses, axis=0), i, epoch, args.model_name, args.save_dir, args.batch_size, args.learning_rate)
-    
-    if args.saliency_map:
-        path = f'dataset/pseudo_labels/{args.model_name}/vanilla_gradients_{args.treshold_labels}'
-        os.makedirs(path, exist_ok=True)
-        with open(os.path.join(path, 'pseudo_labels.pkl'), 'wb') as f:
-            pickle.dump(pseudo_labels, f)
-    else:
+            if mode == 'test':
+                mode = 'train'       
+
+        if args.mode == 'visualization' or args.mode == 'pseudo-label':
+            break   
         metrics_evaluate(metrics_test, args.save_dir, args.model_name)
         plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.first_label)
         
@@ -247,8 +242,7 @@ def train_II(args):
     
     device = torch.device(f'cuda:{args.n_device}' if torch.cuda.is_available() else 'cpu')
     
-    cross_val_data = load_pseudo_label(args.data_skeletons, args.data_true_dir, args.data_pseudo_dir, args.first_label, args.true_labels)    
-    
+    cross_val_data = load_pseudo_label(args.data_skeletons, args.data_true_dir, args.data_pseudo_dir, args.first_label, args.true_labels, args.model_name)    
     
     for i , (X_t, y_t, X_test, y_test) in enumerate (cross_val_data):
         
@@ -294,7 +288,8 @@ def train_II(args):
                 
                 print("Validation...")
 
-                val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, "validation", args.save_dir, args.model_name, args.threshold, args.optuna, args.saliency_map, scaler, i, args.treshold_labels,args.method)
+                val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
+                
                 plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label)
                 
                 scheduler.step()
@@ -311,24 +306,16 @@ def train_II(args):
         cross_val_losses.append(epoch_val_losses)
 
         print("Testing... \n")
-        
-        # if args.mode == 'test' and not args.saliency_map:
-        #     args.checkpoint = f"{args.save_dir}/saved_models/{args.model_name}_{i}_best.pth"
-        
+
         test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
         model = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device)
         model.to(device)
         # model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
-        _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, "testing", args.save_dir, args.model_name, args.threshold, False, args.saliency_map, scaler, i, args.treshold_labels, args.method)
+        _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
         
         auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
         auc_test.append(auc_cross)
-        
-        # metrics_cross = metrics(targets, predictions, "test", args.save_dir, args.model_name)
-        # metrics_test.append(metrics_cross)
-        
-    # plotting_loss(np.mean(cross_train_losses, axis=0), np.mean(cross_val_losses, axis=0), i, epoch, args.model_name, args.save_dir, args.batch_size, args.learning_rate)
-    # metrics_evaluate(metrics_test, args.save_dir, args.model_name)
+    
     plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.trainII)
     
     
@@ -353,6 +340,9 @@ if __name__ == "__main__":
     parser.add_argument('--threshold', type=float, nargs='+', default=[0.5, 0.5, 0.5, 0.5, 0.5, 0.5], help='List of thresholds for multi-label classification')
     parser.add_argument("--eta", type=float, default=0.001, help="Minimum learning rate")
     parser.add_argument("--optuna", action='store_true', help="Use optuna for hyperparameter optimization")
+    parser.add_argument("--test_size", type=float, default=0.1, help="Validation set size")
+    parser.add_argument("--random_seed", type=int, default=10, help="Random seed")
+    parser.add_arguments("--vis_patients", type=int, nargs='+', default=[0], help="Patients to visualize")
 
     # Other arguments
     parser.add_argument("--data_label", type=str, default="dataset1", help="Path to the dataset")
