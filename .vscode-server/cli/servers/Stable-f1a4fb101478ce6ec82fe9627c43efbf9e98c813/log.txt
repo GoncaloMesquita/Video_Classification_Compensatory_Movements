@@ -5,69 +5,81 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to /tmp/code-52175933-2184-4b8b-aea0-fff366438909
-Extension host agent listening on /tmp/code-52175933-2184-4b8b-aea0-fff366438909
+Server bound to /tmp/code-b11e63d6-4547-407a-b687-4773ddd13252
+Extension host agent listening on /tmp/code-b11e63d6-4547-407a-b687-4773ddd13252
 
-[10:20:18] 
-
-
+[11:30:57] 
 
 
-[10:20:19] Extension host agent started.
-[10:20:19] [<unknown>][404db038][ManagementConnection] New connection established.
-[10:20:19] [<unknown>][945729b0][ExtensionHostConnection] New connection established.
-[10:20:19] Deleted uninstalled extension from disk github.copilot /zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.248.0
-[10:20:19] [<unknown>][945729b0][ExtensionHostConnection] <3667221> Launched Extension Host Process.
+
+
+[11:30:58] Extension host agent started.
+[11:30:59] [<unknown>][b040ad32][ManagementConnection] New connection established.
+[11:30:59] [<unknown>][c2f2c6bf][ExtensionHostConnection] New connection established.
+[11:30:59] [<unknown>][c2f2c6bf][ExtensionHostConnection] <102878> Launched Extension Host Process.
+[11:30:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:30:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:00] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:31:03] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
 New EH opened, aborting shutdown
-[10:25:19] New EH opened, aborting shutdown
-[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs1_lr1.000e-04_hs256_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-    at async Object.readdir (node:internal/fs/promises:948:18)
-    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
-    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
-    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs1_lr1.000e-04_hs256_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-}
-[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs3_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-    at async Object.readdir (node:internal/fs/promises:948:18)
-    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
-    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
-    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs3_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-}
-[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs8_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-    at async Object.readdir (node:internal/fs/promises:948:18)
-    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
-    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
-    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs8_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-}
-[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/moment/moment_bs64_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-    at async Object.readdir (node:internal/fs/promises:948:18)
-    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
-    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
-    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/zfsauton2/home/gmesquit/Results/moment/moment_bs64_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-}
-[node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir '/zfsauton2/home/gmesquit/Results/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-    at async Object.readdir (node:internal/fs/promises:948:18)
-    at async JD (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3918)
-    at async Object.Cu (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:45:3847)
-    at async Bl.readdir (file:///zfsauton2/home/gmesquit/.vscode-server/cli/servers/Stable-f1a4fb101478ce6ec82fe9627c43efbf9e98c813/server/out/server-main.js:63:16108) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/zfsauton2/home/gmesquit/Results/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-04_ptFalse'
-}
-[12:32:53] [<unknown>][404db038][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[11:35:58] New EH opened, aborting shutdown
+[11:36:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:36:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:36:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:36:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:41:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:41:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:41:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:41:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:46:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:46:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:46:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:46:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:51:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:51:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:51:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:51:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:56:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:56:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:56:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[11:56:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[12:01:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.251.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[12:01:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.252.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[12:01:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.vscode-pull-request-github-0.102.0]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
+[12:01:01] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2024.11.0-linux-x64]: Extension is not compatible with Code 1.95.3. Extension requires: ^1.96.0.
