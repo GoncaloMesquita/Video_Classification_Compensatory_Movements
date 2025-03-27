@@ -450,19 +450,8 @@ def plot_auc_curves(targets, predictions, fold, n_splits, mean_fpr, mode, first_
     return data
 
 
-def plot_auc_test(data, output, model_name, mean_fpr, first_label, dataset_name):
+def plot_auc_test(data, output, model_name, mean_fpr, first_label, label_names):
     
-    if dataset_name == 'SERE':
-        label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation', 'Exaggerated Shoulder Abduction', 'Trunk Compensation', 'Head Compensation']
-    elif dataset_name=='Toronto':
-        label_names = ['General compensation']
-    elif dataset_name == 'MMAct':
-        label_names = ['standing', 'crouching', 'walking', 'running', 'checking_time', 'waving_hand', 'using_phone', 
-                 'talking_on_phone', 'kicking', 'pointing', 'throwing', 'jumping', 'exiting', 'entering', 
-                 'setting_down', 'talking', 'opening', 'closing', 'carrying', 'loitering', 'transferring_object', 
-                 'looking_around', 'pushing', 'pulling', 'picking_up', 'fall', 'sitting_down', 'using_pc', 
-                 'drinking', 'pocket_out', 'pocket_in', 'sitting', 'using_phone_desk', 'talking_on_phone_desk', 
-                 'standing_up', 'carrying_light', 'carrying_heavy', 'Carrying_light']
     data = np.array(data, dtype=object)
     tprs, fprs, aucs, folds = np.array(data[:, 0]), np.array(data[:, 1]), np.array(data[:, 2]), np.array(data[:, 3])
 
