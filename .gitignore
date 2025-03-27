@@ -36,4 +36,5 @@ trials/
 .bash_history
 .bashrc
 .gitignore
+miniconda.sh
 

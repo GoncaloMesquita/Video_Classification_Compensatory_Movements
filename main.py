@@ -85,7 +85,7 @@ def objective(trial):
     return val
 
 
-def train_I(args):
+def train_I(args, label_names):
     
     args.optuna = False
     cross_train_losses, cross_val_losses, metrics_test, auc_test = [], [], [], []
@@ -114,11 +114,9 @@ def train_I(args):
             X_t_2, X_val_2, y_t_2, y_val_2 = train_test_split(X_t_2, y_t, test_size=args.test_size, random_state=args.random_seed)
         
         print(f"Fold {i}")
+        
         if args.mode == "train" or mode == "train":
             
-            if i in [1, 6, 16] and not args.saliency_map:
-                continue
-        
             X_t, X_val, y_t, y_val = train_test_split(X_t, y_t, test_size=args.test_size, random_state=args.random_seed)
             
             train_loader = create_dataloader(X_t, y_t, args.batch_size, True, args.model_name, args.trainII, X_t_2)
@@ -127,11 +125,6 @@ def train_I(args):
             early_stopping = EarlyStopping(patience=args.patience, model_name=args.model_name, learning_rate=args.learning_rate,batch_size = args.batch_size, output_dir=fold_save_dir ,verbose=True, delta=args.delta)
             model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device, args.learning_rate, args.eta, args.epochs )
             model.to(device)
-            
-            if torch.cuda.device_count() > 1:
-                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
-                # if isinstance(model, torch.nn.DataParallel):
-                #     model = model.module
 
             epoch_train_losses = []
             epoch_val_losses = []
@@ -172,9 +165,6 @@ def train_I(args):
 
         elif args.mode == 'pseudo-label':
             
-            if i < 17:
-                continue
-            
             if f"{args.checkpoint.rsplit('/', 1)[1][-10]}" != i:
                 if i > 10 :
                     print(f"{args.checkpoint.rsplit('.', 1)[0][:-7]}")
@@ -186,8 +176,6 @@ def train_I(args):
             test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
             model , criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs)
             model.to(device)
-            if torch.cuda.device_count() > 1:
-                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
             
             pseudo_label(model, test_loader, device, args.save_dir, args.model_name, i, args.treshold_labels, args.method)
 
@@ -203,22 +191,18 @@ def train_I(args):
                 test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
                 model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs )
                 model.to(device)
-                if torch.cuda.device_count() > 1:
-                    model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
         
                 visualization(model, test_loader, device, args.model_name, i, args.method ,args.vis_trials, args.batch_size)
                 
-        if args.mode == 'test' or mode == 'test':    
+        if args.mode == 'test' or mode == 'test':  
+              
             print("Testing... \n")
             test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
             model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device,  args.learning_rate, args.eta, args.epochs )
             model.to(device)
-            if torch.cuda.device_count() > 1:
-                model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
         
             _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
             
-        
             auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
             auc_test.append(auc_cross)
             
@@ -229,6 +213,7 @@ def train_I(args):
 
     if args.mode == 'visualization' or args.mode == 'pseudo-label':
         return   
+    
     metrics_evaluate(metrics_test, args.save_dir, args.model_name)
     plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.first_label)
         
