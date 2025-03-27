@@ -333,14 +333,16 @@ def train_II(args):
     
 if __name__ == "__main__":
     
+    
     parser = argparse.ArgumentParser(description="Train an LSTM/AcT/Moment model for video classification")
     parser.add_argument("--model_name", type=str, default="LSTM", help="Name of the model")
     parser.add_argument("--input_size", type=int, default=2048, help="Input feature size")
     parser.add_argument("--hidden_size", type=int, nargs='+', default=[128], help="Hidden layer sizes")
+    parser.add_argument("--num_seq", type=int, default=769, help="Number of sequences")
     parser.add_argument("--num_layers", type=int, default=2, help="Number of LSTM layers")
     parser.add_argument("--num_labels", type=int, default=5, help="Number of output classes")
     parser.add_argument("--dropout", type=float, default=0.5, help="Dropout rate")
-    
+        
     # Training parameters
     parser.add_argument("--batch_size", type=int, default=1, help="Batch size for training")
     parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs")
@@ -375,9 +377,23 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     print(args)
-        
-    args.save_dir = f"{args.save_dir}/{args.model_name}"
+    
+    dataset_name = args.data_trial.split('/')[1].split('_')[0]
+    if dataset_name == 'SERE':
+        label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation', 'Exaggerated Shoulder Abduction', 'Trunk Compensation', 'Head Compensation']
+    elif dataset_name=='Toronto':
+        label_names = ['General compensation']
+    elif dataset_name == 'MMAct':
+        label_names = ['standing', 'crouching', 'walking', 'running', 'checking_time', 'waving_hand', 'using_phone', 
+                 'talking_on_phone', 'kicking', 'pointing', 'throwing', 'jumping', 'exiting', 'entering', 
+                 'setting_down', 'talking', 'opening', 'closing', 'carrying', 'loitering', 'transferring_object', 
+                 'looking_around', 'pushing', 'pulling', 'picking_up', 'fall', 'sitting_down', 'using_pc', 
+                 'drinking', 'pocket_out', 'pocket_in', 'sitting', 'using_phone_desk', 'talking_on_phone_desk', 
+                 'standing_up', 'carrying_light', 'carrying_heavy', 'Carrying_light']
+
+    args.save_dir = f"{args.save_dir}/{dataset_name}_{args.model_name}"
     os.makedirs(args.save_dir, exist_ok=True)
+    
     
     if args.optuna : 
         # study = optuna.create_study(directions=["minimize", "maximize"])
@@ -391,6 +407,7 @@ if __name__ == "__main__":
         best_params = study.best_trial.params
         print("Best parameters: ", best_params)
         best_params_file = os.path.join(args.save_dir, f"{args.model_name}_best_params.txt")
+        
         with open(best_params_file, "w") as f:
             for key, value in best_params.items():
                 f.write(f"{key}: {value}\n")
@@ -410,10 +427,8 @@ if __name__ == "__main__":
         os.makedirs(args.save_dir, exist_ok=True)
 
     if args.trainII:
-        train_II(args)
+        train_II(args, label_names)
     else:
-        train_I(args)
+        train_I(args, label_names)
         
-
-
 

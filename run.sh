@@ -106,7 +106,7 @@ python3 main.py  \
     --threshold 0.5 0.4 0.5 0.35 0.30000000000000004 0.1 \
     --eta 0.0001 \
     --mode train \
-    --data_label dataset/labels_per_person.pt \
+    --data_label dataset/MMAct_labels_per_person.pt \
     --data_skeletons dataset/data_skeletons_per_person.pt \
     --data_trial trials \
     --save_dir Results/ \

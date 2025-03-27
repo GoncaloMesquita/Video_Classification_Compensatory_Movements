@@ -399,11 +399,8 @@ def load_data_video(data_dir_labels, data_trial, index_keep,  resize_dim=(256, 2
     return cross_val_data
     
     
-def plot_auc_curves(targets, predictions, fold, n_splits, mean_fpr, mode, first_label):
+def plot_auc_curves(targets, predictions, fold, n_splits, mean_fpr, mode, first_label, label_names):
     
-    label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation', 'Exaggerated Shoulder Abduction', 'Trunk Compensation', 'Head Compensation']
-    if first_label:
-        label_names = ['General compensation']
 
     if mode == 'validation' or mode == 'train':
         
@@ -453,13 +450,19 @@ def plot_auc_curves(targets, predictions, fold, n_splits, mean_fpr, mode, first_
     return data
 
 
-def plot_auc_test(data, output, model_name, mean_fpr, first_label):
+def plot_auc_test(data, output, model_name, mean_fpr, first_label, dataset_name):
     
-    if first_label:
+    if dataset_name == 'SERE':
+        label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation', 'Exaggerated Shoulder Abduction', 'Trunk Compensation', 'Head Compensation']
+    elif dataset_name=='Toronto':
         label_names = ['General compensation']
-    else:
-        label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation','Exaggerated Shoulder Abduction', 'Trunk Compensation','Head Compensation' ]
-        
+    elif dataset_name == 'MMAct':
+        label_names = ['standing', 'crouching', 'walking', 'running', 'checking_time', 'waving_hand', 'using_phone', 
+                 'talking_on_phone', 'kicking', 'pointing', 'throwing', 'jumping', 'exiting', 'entering', 
+                 'setting_down', 'talking', 'opening', 'closing', 'carrying', 'loitering', 'transferring_object', 
+                 'looking_around', 'pushing', 'pulling', 'picking_up', 'fall', 'sitting_down', 'using_pc', 
+                 'drinking', 'pocket_out', 'pocket_in', 'sitting', 'using_phone_desk', 'talking_on_phone_desk', 
+                 'standing_up', 'carrying_light', 'carrying_heavy', 'Carrying_light']
     data = np.array(data, dtype=object)
     tprs, fprs, aucs, folds = np.array(data[:, 0]), np.array(data[:, 1]), np.array(data[:, 2]), np.array(data[:, 3])
 
@@ -491,94 +494,120 @@ def plot_auc_test(data, output, model_name, mean_fpr, first_label):
         mean_aucs.append(mean_auc)
         std_aucs.append(std_auc)
 
-    m=0
-    n=0
-    fig, ax3 = plt.subplots(3, 2, figsize=(20, 16))
+    # Create figures with at most 6 plots per figure
+    labels_per_figure = 6
+    num_figures = (len(label_names) + labels_per_figure - 1) // labels_per_figure
 
-    for i, label in enumerate(label_names):
-
-        ax3[m, n].plot(mean_fpr, mean_tprs[i], label=r"Mean ROC (AUC = %0.2f $\pm$ %0.2f)" % (mean_aucs[i], std_aucs[i]))
-        # colors = plt.cm.viridis(np.linspace(0, 4, len(valid_tprs[i])))
-        colors = plt.cm.get_cmap('tab20', len(valid_tprs[i]))
-        for j, tpr in enumerate(valid_tprs[i]):
-
-            ax3[m, n].plot(mean_fpr, tpr, color=colors(j / len(valid_tprs[i])), alpha=0.4, label=f'Fold {valid_folds[i][j] + 1} ROC (AUC = {valid_aucs[i][j]:.2f})')
-            
-        std_tpr = np.std(mean_tprs[i], axis=0)
-        tprs_upper = np.minimum(mean_tprs[i] + std_tpr, 1)
-        tprs_lower = np.maximum(mean_tprs[i] - std_tpr, 0)
-        ax3[m, n].fill_between(mean_fpr, tprs_lower, tprs_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
-        ax3[m, n].set_xlabel('False Positives')
-        ax3[m, n].set_ylabel('True Positives')
-        ax3[m, n].set_title(f'{model_name} ROC Curve for {label}: TPR vs FPR')
-        ax3[m, n].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left')
-        m = m+1
-        if m == 3:
-            m = 0
-            n = n+1
-            
-    plt.tight_layout()
-    plt.savefig(f'{output}/auc_curves_normal_scale.png')
-    plt.close()
-    
-    fig, ax1 = plt.subplots(3, 2, figsize=(20, 16))
-    m,n = 0 ,0 
-    for i, label in enumerate(label_names):
-        ax1[m,n].plot(mean_fpr, mean_tprs[i], label="Mean" )
-        # colors = plt.cm.viridis(np.linspace(0, 4, len(valid_tprs[i])))
-        colors = plt.cm.get_cmap('tab20', len(valid_tprs[i]))
-        for j, tpr in enumerate(valid_tprs[i]):
-
-            ax1[m, n].plot(mean_fpr, tpr, color=colors(j / len(valid_tprs[i])), alpha=0.4, label=f'Fold {valid_folds[i][j] + 1} ROC (AUC = {valid_aucs[i][j]:.2f})')
-        tprs_upper = np.minimum(mean_tprs[i] + std_tpr, 1)
-        tprs_lower = np.maximum(mean_tprs[i] - std_tpr, 0)
-        ax1[m,n].fill_between(mean_fpr, tprs_lower, tprs_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
-        ax1[m,n].set_xscale('log')
-        ax1[m,n].set_xlabel('False Positives')
-        ax1[m,n].set_ylabel('True Positives')
-        ax1[m,n].set_title(f'{model_name} ROC Curve for {label}: TPR vs FPR')
-        ax1[m, n].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left') 
-        m = m+1
-        if m == 3:
-            m = 0
-            n = n+1
-            
-    plt.tight_layout()
-    plt.savefig(f'{output}/auc_curves_log.png')
-    plt.close()
-
-    # Plot 3: True Negatives (normal scale) vs False Negatives (log scale)
-    fig, ax2 = plt.subplots(3, 2, figsize=(20, 16))
-    m, n = 0, 0
-    for i, label in enumerate(label_names):
-        mean_fnr = 1 - mean_tprs[i]
-        mean_tnr = 1 - mean_fpr
-        ax2[m, n].plot(mean_fnr, mean_tnr, label="Mean")
-        colors = plt.cm.get_cmap('tab20', len(valid_tprs[i]))
-        # colors = plt.cm.viridis(np.linspace(0, 4, len(valid_tprs[i])))
-        for j, tpr in enumerate(valid_tprs[i]):
-            fnr = 1 - tpr
-            ax2[m, n].plot(fnr, mean_tnr, color=colors(j / len(valid_tprs[i])), alpha=0.4, label=f'Fold {valid_folds[i][j] + 1}')
-            
-        std_fnr = np.std(mean_fnr, axis=0)
-        fnr_upper = np.minimum(mean_fnr + std_fnr, 1)
-        fnr_lower = np.maximum(mean_fnr - std_fnr, 0)
-        ax2[m, n].fill_between(mean_fnr, fnr_lower, fnr_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
-        ax2[m, n].set_xscale('log')
-        ax2[m, n].set_xlabel('False Negatives')
-        ax2[m, n].set_ylabel('True Negatives')
-        ax2[m, n].set_title(f'{model_name} ROC Curve for {label}: TN vs FN')
-        ax2[m, n].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left')
-
+    # First set of figures - Normal scale ROC curves
+    for fig_idx in range(num_figures):
+        fig, ax = plt.subplots(2, 3, figsize=(20, 16))
+        ax = ax.flatten()
         
-        m = m + 1
-        if m == 3:
-            m = 0
-            n = n + 1
-
-    plt.tight_layout()
-    plt.savefig(f'{output}/TN_vs_FN.png')
-    plt.close()
+        start_idx = fig_idx * labels_per_figure
+        end_idx = min(start_idx + labels_per_figure, len(label_names))
+        
+        for i, label_idx in enumerate(range(start_idx, end_idx)):
+            label = label_names[label_idx]
+            
+            ax[i].plot(mean_fpr, mean_tprs[label_idx], 
+                      label=r"Mean ROC (AUC = %0.2f $\pm$ %0.2f)" % (mean_aucs[label_idx], std_aucs[label_idx]))
+            
+            colors = plt.cm.get_cmap('tab20', len(valid_tprs[label_idx]))
+            for j, tpr in enumerate(valid_tprs[label_idx]):
+                ax[i].plot(mean_fpr, tpr, color=colors(j / len(valid_tprs[label_idx])), alpha=0.4, 
+                          label=f'Fold {valid_folds[label_idx][j] + 1} ROC (AUC = {valid_aucs[label_idx][j]:.2f})')
+                
+            std_tpr = np.std(mean_tprs[label_idx], axis=0)
+            tprs_upper = np.minimum(mean_tprs[label_idx] + std_tpr, 1)
+            tprs_lower = np.maximum(mean_tprs[label_idx] - std_tpr, 0)
+            ax[i].fill_between(mean_fpr, tprs_lower, tprs_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
+            ax[i].set_xlabel('False Positives')
+            ax[i].set_ylabel('True Positives')
+            ax[i].set_title(f'{model_name} ROC Curve for {label}: TPR vs FPR')
+            ax[i].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left')
+        
+        # Hide any unused subplots
+        for j in range(end_idx - start_idx, labels_per_figure):
+            ax[j].axis('off')
+            
+        plt.tight_layout()
+        plt.savefig(f'{output}/auc_curves_normal_scale_part{fig_idx+1}.png')
+        plt.close()
+    
+    # Second set of figures - Log scale ROC curves
+    for fig_idx in range(num_figures):
+        fig, ax = plt.subplots(2, 3, figsize=(20, 16))
+        ax = ax.flatten()
+        
+        start_idx = fig_idx * labels_per_figure
+        end_idx = min(start_idx + labels_per_figure, len(label_names))
+        
+        for i, label_idx in enumerate(range(start_idx, end_idx)):
+            label = label_names[label_idx]
+            
+            ax[i].plot(mean_fpr, mean_tprs[label_idx], label="Mean")
+            
+            colors = plt.cm.get_cmap('tab20', len(valid_tprs[label_idx]))
+            for j, tpr in enumerate(valid_tprs[label_idx]):
+                ax[i].plot(mean_fpr, tpr, color=colors(j / len(valid_tprs[label_idx])), alpha=0.4, 
+                          label=f'Fold {valid_folds[label_idx][j] + 1} ROC (AUC = {valid_aucs[label_idx][j]:.2f})')
+                
+            std_tpr = np.std(mean_tprs[label_idx], axis=0)
+            tprs_upper = np.minimum(mean_tprs[label_idx] + std_tpr, 1)
+            tprs_lower = np.maximum(mean_tprs[label_idx] - std_tpr, 0)
+            ax[i].fill_between(mean_fpr, tprs_lower, tprs_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
+            ax[i].set_xscale('log')
+            ax[i].set_xlabel('False Positives')
+            ax[i].set_ylabel('True Positives')
+            ax[i].set_title(f'{model_name} ROC Curve for {label}: TPR vs FPR')
+            ax[i].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left')
+        
+        # Hide any unused subplots
+        for j in range(end_idx - start_idx, labels_per_figure):
+            ax[j].axis('off')
+            
+        plt.tight_layout()
+        plt.savefig(f'{output}/auc_curves_log_part{fig_idx+1}.png')
+        plt.close()
+    
+    # Third set of figures - TN vs FN curves
+    for fig_idx in range(num_figures):
+        fig, ax = plt.subplots(2, 3, figsize=(20, 16))
+        ax = ax.flatten()
+        
+        start_idx = fig_idx * labels_per_figure
+        end_idx = min(start_idx + labels_per_figure, len(label_names))
+        
+        for i, label_idx in enumerate(range(start_idx, end_idx)):
+            label = label_names[label_idx]
+            
+            mean_fnr = 1 - mean_tprs[label_idx]
+            mean_tnr = 1 - mean_fpr
+            ax[i].plot(mean_fnr, mean_tnr, label="Mean")
+            
+            colors = plt.cm.get_cmap('tab20', len(valid_tprs[label_idx]))
+            for j, tpr in enumerate(valid_tprs[label_idx]):
+                fnr = 1 - tpr
+                ax[i].plot(fnr, mean_tnr, color=colors(j / len(valid_tprs[label_idx])), alpha=0.4, 
+                           label=f'Fold {valid_folds[label_idx][j] + 1}')
+                
+            std_fnr = np.std(mean_fnr, axis=0)
+            fnr_upper = np.minimum(mean_fnr + std_fnr, 1)
+            fnr_lower = np.maximum(mean_fnr - std_fnr, 0)
+            ax[i].fill_between(mean_fnr, fnr_lower, fnr_upper, color="grey", alpha=0.2, label=r"$\pm$ 1 std. dev.")
+            ax[i].set_xscale('log')
+            ax[i].set_xlabel('False Negatives')
+            ax[i].set_ylabel('True Negatives')
+            ax[i].set_title(f'{model_name} ROC Curve for {label}: TN vs FN')
+            ax[i].legend(fontsize='xx-small', bbox_to_anchor=(1.05, 1), loc='upper left')
+        
+        # Hide any unused subplots
+        for j in range(end_idx - start_idx, labels_per_figure):
+            ax[j].axis('off')
+            
+        plt.tight_layout()
+        plt.savefig(f'{output}/TN_vs_FN_part{fig_idx+1}.png')
+        plt.close()
     
     return
 
