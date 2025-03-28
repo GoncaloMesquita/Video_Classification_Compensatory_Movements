@@ -85,7 +85,7 @@ def objective(trial):
     return val
 
 
-def train_I(args, label_names):
+def train_I(args, label_names, dataset_name):
     
     args.optuna = False
     cross_train_losses, cross_val_losses, metrics_test, auc_test = [], [], [], []
@@ -101,7 +101,7 @@ def train_I(args, label_names):
     if torch.cuda.is_available():
         cudnn.benchmark = True
 
-    cross_val_data, index_keep = load_data(args.data_label, args.data_skeletons)    
+    cross_val_data, index_keep = load_data(args.data_label, args.data_skeletons, dataset_name, args.input_size, args.num_people, args.n_dim)    
     
     if args.model_name == 'moment+dino':
         cross_val_data_2 = load_data_video(args.data_label, args.data_trials, index_keep, args.trainII) 
@@ -123,7 +123,7 @@ def train_I(args, label_names):
             val_loader = create_dataloader(X_val, y_val, args.batch_size, False, args.model_name,args.trainII, X_val_2)
 
             early_stopping = EarlyStopping(patience=args.patience, model_name=args.model_name, learning_rate=args.learning_rate,batch_size = args.batch_size, output_dir=fold_save_dir ,verbose=True, delta=args.delta)
-            model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device, args.learning_rate, args.eta, args.epochs )
+            model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
             model.to(device)
 
             epoch_train_losses = []
@@ -146,7 +146,7 @@ def train_I(args, label_names):
 
                 val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
                 
-                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label)
+                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label, label_names)
                 
                 scheduler.step()
                 
@@ -174,7 +174,7 @@ def train_I(args, label_names):
                     
             print(args.checkpoint)
             test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
-            model , criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs)
+            model , criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim)
             model.to(device)
             
             pseudo_label(model, test_loader, device, args.save_dir, args.model_name, i, args.treshold_labels, args.method)
@@ -189,7 +189,7 @@ def train_I(args, label_names):
             
             if i in args.vis_patients:
                 test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
-                model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs )
+                model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
                 model.to(device)
         
                 visualization(model, test_loader, device, args.model_name, i, args.method ,args.vis_trials, args.batch_size)
@@ -198,7 +198,7 @@ def train_I(args, label_names):
               
             print("Testing... \n")
             test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name, args.trainII, X_test_2)
-            model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device,  args.learning_rate, args.eta, args.epochs )
+            model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device,  args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
             model.to(device)
         
             _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
@@ -215,10 +215,10 @@ def train_I(args, label_names):
         return   
     
     metrics_evaluate(metrics_test, args.save_dir, args.model_name)
-    plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.first_label)
+    plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, label_names )
         
 
-def train_II(args):
+def train_II(args, label_names, dataset_name):
         
     args.optuna = False
     cudnn.benchmark = True
@@ -243,12 +243,10 @@ def train_II(args):
     
     device = torch.device(f'cuda:{args.n_device}' if torch.cuda.is_available() else 'cpu')
     
-    cross_val_data = load_pseudo_label(args.data_skeletons, args.data_true_dir, args.data_pseudo_dir, args.first_label, args.true_labels, args.model_name)    
+    cross_val_data = load_pseudo_label(args.data_skeletons, args.data_true_dir, args.data_pseudo_dir, args.first_label, args.true_labels, args.model_name, args.input_size, args.num_people)    
     
     for i , (X_t, y_t, X_test, y_test) in enumerate (cross_val_data):
-        
-        if i in [ 1, 6, 16]:
-            continue
+
         
         print('Fold:', i)   
         X_t, X_val, y_t, y_val = train_test_split(X_t, y_t, test_size=0.1, random_state=10)
@@ -257,7 +255,7 @@ def train_II(args):
         val_loader = create_dataloader(X_val, y_val, args.batch_size, False, args.model_name,args.trainII, X_val_2)
 
         early_stopping = EarlyStopping(patience=args.patience, model_name=args.model_name, learning_rate=args.learning_rate,batch_size = args.batch_size, output_dir=fold_save_dir ,verbose=True, delta=args.delta)
-        model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device, args.learning_rate, args.eta, args.epochs )
+        model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, args.mode, args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
         model.to(device)
         # model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
 
@@ -287,7 +285,7 @@ def train_II(args):
 
                 val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
                 
-                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label)
+                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label, label_names)
                 
                 scheduler.step()
                 
@@ -305,7 +303,7 @@ def train_II(args):
         print("Testing... \n")
 
         test_loader = create_dataloader(X_test, y_test, args.batch_size, False, args.model_name,args.trainII, X_test_2)
-        model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs )
+        model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
         model.to(device)
         # model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
         _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
@@ -313,7 +311,7 @@ def train_II(args):
         auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
         auc_test.append(auc_cross)
     
-    plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, args.trainII)
+    plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, label_names)
     
     
 if __name__ == "__main__":
@@ -324,6 +322,8 @@ if __name__ == "__main__":
     parser.add_argument("--input_size", type=int, default=2048, help="Input feature size")
     parser.add_argument("--hidden_size", type=int, nargs='+', default=[128], help="Hidden layer sizes")
     parser.add_argument("--num_seq", type=int, default=769, help="Number of sequences")
+    parser.add_argument("--n_dim", type=int, default=3, help="Number of frames")
+    parser.add_argument("--num_people", type=int, default=18, help="Number of attention heads")
     parser.add_argument("--num_layers", type=int, default=2, help="Number of LSTM layers")
     parser.add_argument("--num_labels", type=int, default=5, help="Number of output classes")
     parser.add_argument("--dropout", type=float, default=0.5, help="Dropout rate")
@@ -363,7 +363,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args)
     
-    dataset_name = args.data_trial.split('/')[1].split('_')[0]
+    dataset_name = args.data_skeletons.split('/')[1].split('_')[0]
     if dataset_name == 'SERE':
         label_names = ['General compensation', 'Shoulder Compensation', 'Shoulder Elevation', 'Exaggerated Shoulder Abduction', 'Trunk Compensation', 'Head Compensation']
     elif dataset_name=='Toronto':
@@ -376,7 +376,7 @@ if __name__ == "__main__":
                  'drinking', 'pocket_out', 'pocket_in', 'sitting', 'using_phone_desk', 'talking_on_phone_desk', 
                  'standing_up', 'carrying_light', 'carrying_heavy', 'Carrying_light']
 
-    args.save_dir = f"{args.save_dir}/{dataset_name}_{args.model_name}"
+    args.save_dir = f"Video_Classification_Compensatory_Movements/{args.save_dir}/{dataset_name}_{args.model_name}"
     os.makedirs(args.save_dir, exist_ok=True)
     
     
@@ -412,8 +412,8 @@ if __name__ == "__main__":
         os.makedirs(args.save_dir, exist_ok=True)
 
     if args.trainII:
-        train_II(args, label_names)
+        train_II(args, label_names, dataset_name)
     else:
-        train_I(args, label_names)
+        train_I(args, label_names, dataset_name)
         
 

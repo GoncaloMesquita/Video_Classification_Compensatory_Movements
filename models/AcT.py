@@ -6,7 +6,7 @@ import numpy as np
 
 class PatchClassEmbedding(nn.Module):
     
-    def __init__(self, d_model, n_patches, pos_emb=None):
+    def __init__(self, d_model, n_patches, num_seq, pos_emb=None):
         super(PatchClassEmbedding, self).__init__()
         self.d_model = d_model
         self.n_tot_patches = n_patches + 1
@@ -15,7 +15,7 @@ class PatchClassEmbedding(nn.Module):
         # Class embedding token
         self.class_embed = nn.Parameter(torch.zeros(1, 1, self.d_model))
         nn.init.kaiming_normal_(self.class_embed)
-        self.position_embedding = nn.Embedding(770, self.d_model)
+        self.position_embedding = nn.Embedding(num_seq, self.d_model)
 
     def forward(self, inputs, mask=None):
         batch_size = inputs.size(0)
@@ -151,7 +151,7 @@ def create_padding_mask(lengths, max_len):
 
 
 class AcT(nn.Module):
-    def __init__(self, dropout):
+    def __init__(self, dropout, num_seq):
         super(AcT, self).__init__()
         
         self.d_model = 64*4
@@ -164,12 +164,12 @@ class AcT(nn.Module):
             d_ff=self.d_model*4,
             dropout=dropout,
             activation=f.gelu,
-            n_layers=6
+            n_layers=6,
         )
         
         self.transformer = transformer
         self.dense1 = nn.Linear(52, self.d_model)
-        self.patch_embed = PatchClassEmbedding(self.d_model, 30)
+        self.patch_embed = PatchClassEmbedding(self.d_model, 30, num_seq)
         self.mlp_head = nn.Linear(self.d_model, self.mlp_head_size)
         self.final_dense = nn.Linear(self.mlp_head_size, 20)
 

@@ -12,7 +12,7 @@ def training(model, dataloader, optimizer, criterion, device, save_dir, model_na
     all_targets, all_sigmoid_outputs, all_predictions = [], [], []
     thresholds = torch.tensor(thresholds, device=device)
     
-    if epoch == 0 and model_name in ['moment', 'AcT', 'SkateFormer', 'moment+dino']:
+    if epoch == 0 and model_name in ['moment+dino']:
         
         if model_name == 'moment+dino':
             for name, param in model.named_parameters():

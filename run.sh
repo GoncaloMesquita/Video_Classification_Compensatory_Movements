@@ -91,22 +91,23 @@ path_trial="trials"
 
 
 python3 main.py  \
-    --model_name moment+dino \
-    --input_size 99 \
+    --model_name AcT \
+    --input_size 34 \
     --hidden_size 192 \
+    --num_seq 2000 \ 
     --num_layers 1 \
     --num_labels 6 \
     --dropout 0.20 \
     --batch_size 4 \
     --epochs 10 \
-    --learning_rate 0.001 \
+    --learning_rate 0.0001 \
     --patience 3 \
-    --delta 0.0 \
+    --delta 0 \
     --clip_value 0.7 \
     --threshold 0.5 0.4 0.5 0.35 0.30000000000000004 0.1 \
-    --eta 0.0001 \
+    --eta 0.000001 \
     --mode train \
-    --data_label dataset/MMAct_labels_per_person.pt \
+    --data_label Video_Classification_Compensatory_Movements/dataset/MMAct_data_label_video_3_level.pt \
     --data_skeletons dataset/data_skeletons_per_person.pt \
     --data_trial trials \
     --save_dir Results/ \

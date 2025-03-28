@@ -1,6 +1,0 @@
-{
-    "python.defaultInterpreterPath": ".virtual_env/bin/python",
-    "pylint.interpreter": [
-        ".virtual_env/bin/python"
-    ]
-}

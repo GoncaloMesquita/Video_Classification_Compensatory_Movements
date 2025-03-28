@@ -8,7 +8,7 @@ from models.MLP import MLP
 import torch.nn as nn
 import torch.optim as optim
 
-def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dropout, checkpoint, mode, pretrained, device, learning_rate, eta, epochs):
+def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dropout, checkpoint, mode, pretrained, device, learning_rate, eta, epochs, seq_lenght, n_dim):
     # Import the necessary modules
     
     if model_name == 'LSTM':
@@ -23,7 +23,7 @@ def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dr
         
     elif model_name == 'AcT':
         if mode == 'train':
-            model = AcT(dropout)
+            model = AcT(dropout, seq_lenght)
             checkpoints = torch.load("models/AcT_model_state_dict.pth",weights_only=True, map_location=device)
             
             for k in ['patch_embed.position_embedding.weight']:
@@ -45,7 +45,7 @@ def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dr
                         print('Freez layer:', name)
         
         if mode == 'test':  
-            model = AcT(dropout)
+            model = AcT(dropout, seq_lenght)
             model.dense1 = torch.nn.Linear(input_size,256)
             model.final_dense = torch.nn.Linear(512, num_labels)
             checkpoints = torch.load(checkpoint, weights_only=True, map_location=device)
@@ -55,8 +55,8 @@ def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dr
     elif model_name == 'SkateFormer' :
         if mode == "train":
 
-            model = SkateFormer( in_channels=3, depths=(2, 2, 2, 2), channels=(96, 192, 192, 192), num_classes=6,
-                 embed_dim=96, num_people=1, num_frames=769, num_points=33, kernel_size=7, num_heads=32,
+            model = SkateFormer( in_channels=n_dim, depths=(2, 2, 2, 2), channels=(96, 192, 192, 192), num_classes=num_labels,
+                 embed_dim=96, num_people=1, num_frames=seq_lenght, num_points=input_size, kernel_size=7, num_heads=32,
                  type_1_size=(1,11), type_2_size=(1,11), type_3_size=(1,11), type_4_size=(1,11),
                  attn_drop=0., head_drop=0., drop=0., rel=True, drop_path=0., mlp_ratio=4.,
                  act_layer=nn.GELU, norm_layer_transformer=nn.LayerNorm, index_t=False, global_pool='avg')
@@ -103,8 +103,8 @@ def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dr
             
         if mode == 'test':  
             
-            model = SkateFormer( in_channels=3, depths=(2, 2, 2, 2), channels=(96, 192, 192, 192), num_classes=6,
-                 embed_dim=96, num_people=1, num_frames=769, num_points=33, kernel_size=7, num_heads=32,
+            model = SkateFormer( in_channels=n_dim, depths=(2, 2, 2, 2), channels=(96, 192, 192, 192), num_classes=num_labels,
+                 embed_dim=96, num_people=1, num_frames=seq_lenght, num_points=input_size, kernel_size=7, num_heads=32,
                  type_1_size=(1,11), type_2_size=(1,11), type_3_size=(1,11), type_4_size=(1,11),
                  attn_drop=0., head_drop=0., drop=0., rel=True, drop_path=0., mlp_ratio=4.,
                  act_layer=nn.GELU, norm_layer_transformer=nn.LayerNorm, index_t=False, global_pool='avg')
@@ -129,7 +129,6 @@ def create_model(model_name, input_size, hidden_size, num_layers, num_labels, dr
             model.load_state_dict(torch.load(checkpoint, weights_only=True, map_location=device), strict=True)
             
             for name, param in model.named_parameters():
-                if not name.startswith('moment_model.head.'):
                     param.requires_grad = False
                     print('Freezing layer:', name)
                 

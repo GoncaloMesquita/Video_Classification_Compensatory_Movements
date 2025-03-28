@@ -291,7 +291,7 @@ def collate_fn(batch):
     return padded_sequences, torch.tensor(labels), lengths, padded_sequences2
 
     
-def initial_distance(skeletons):
+def initial_distance(skeletons, input_size, n_dim):
     features = []
     
     # Iterate through each film
@@ -299,17 +299,17 @@ def initial_distance(skeletons):
         
         initial_position = np.array(sequence[0])
         
-        initial_position = initial_position.reshape(-1, 3)
+        initial_position = initial_position.reshape(-1, n_dim)
         
         feature_sequence = []
         
         for frame in sequence:
             current_position = np.array(frame)
-            current_position = current_position.reshape(-1, 3)  # Reshape each frame similarly
+            current_position = current_position.reshape(-1, n_dim)  # Reshape each frame similarly
             
             distance = current_position - initial_position
             
-            feature_sequence.append(distance.reshape(99))
+            feature_sequence.append(distance.reshape(input_size))
         
         # Append the sequence of features for the current film
         features.append(feature_sequence)
@@ -337,7 +337,42 @@ def moving_average_filter(sequence, window_size=5):
     return person
 
 
-def load_data(data_dir_labels, data_dir_skeletons):
+def normalize_skeletons(skeletons):
+
+    normalized_skeletons = {}
+    
+    for person_id, trials in skeletons.items():
+        normalized_trials = []
+        
+        for trial in trials:
+            normalized_frames = []
+            
+            for frame in trial:
+
+                # Reshape to get 3D joint coordinates
+                joints = np.array(frame).reshape(-1, 3)
+                joints =  joints[:,0:2]
+                # Calculate midpoint between hip joints (assuming joints 11 and 12 are hip points)
+                center = (joints[11] + joints[12]) / 2
+                
+                # Calculate shoulder width (assuming joints 5 and 6 are shoulders)
+                shoulder_width = np.linalg.norm(joints[5] - joints[6])
+                
+                # Normalize: center at hip midpoint and scale by shoulder width
+                normalized_joints = (joints - center) / (shoulder_width + 1e-8)  # Add small epsilon to avoid division by zero
+
+   
+                
+                normalized_frames.append(normalized_joints.tolist())
+            
+            normalized_trials.append(normalized_frames)
+        
+        normalized_skeletons[person_id] = normalized_trials
+    
+    return normalized_skeletons
+
+
+def load_data(data_dir_labels, data_dir_skeletons, dataset_name, input_size, num_people, n_dim):
     
     ske = torch.load(data_dir_skeletons, weights_only=False)
     labels = torch.load(data_dir_labels, weights_only=False)
@@ -352,24 +387,45 @@ def load_data(data_dir_labels, data_dir_skeletons):
             append_indices.append(indices_to_keep)
             
     cross_val_data = []
-
+    
+    if dataset_name == 'MMAct':
+        
+        # For MMAct dataset, process the data to remove any empty lists or lists with None values
+        for key in list(ske.keys()):
+            if isinstance(ske[key], list):
+                # Remove any lists containing None or empty lists
+                valid_indices = []
+                for i, sublist in enumerate(ske[key]):
+                    if sublist and None not in sublist:
+                        valid_indices.append(i)
+                
+                ske[key] = [ske[key][i] for i in valid_indices]
+                labels[key] = [labels[key][i] for i in valid_indices]
+                append_indices.append(valid_indices)
+                
+        for key in labels.keys():
+            labels[key] = [[1 - label if label in [0, 1] else label for label in sublist] for sublist in labels[key]]
+                
+        ske = normalize_skeletons(ske)
+        
+        
     ske = {key: moving_average_filter(value) for key, value in ske.items()}
-    ske = {key: initial_distance(value) for key, value in ske.items()}
+    # ske = {key: initial_distance(value, input_size, n_dim) for key, value in ske.items()}
 
-    for i in range(1, 19):  # Assuming persons are indexed from 1 to 18
+    for i in range(1, num_people):  # Assuming persons are indexed from 1 to 18
         # Test set for the current person
         test_ske = ske[i]
         test_labels = labels[i]
-        test_labels = [[1 - label if idx == 0 else label for idx, label in enumerate(sublist)] for sublist in test_labels]
+        # test_labels = [[1 - label if idx == 0 else label for idx, label in enumerate(sublist)] for sublist in test_labels]
 
         # Train set (excluding test set)
-        train_ske = [ske[j] for j in range(1, 19) if j != i]
-        train_labels = [labels[j] for j in range(1, 19) if j != i]
+        train_ske = [ske[j] for j in range(1, num_people) if j != i]
+        train_labels = [labels[j] for j in range(1, num_people) if j != i]
 
         # Flatten the train data
         train_ske = [item for sublist in train_ske for item in sublist]
         train_labels = [item for sublist in train_labels for item in sublist]
-        train_labels = [[1 - label if idx == 0 else label for idx, label in enumerate(sublist)] for sublist in train_labels]
+        # train_labels = [[1 - label if idx == 0 else label for idx, label in enumerate(sublist)] for sublist in train_labels]
 
         # Append the split data (train, test) to the cross-validation list
         cross_val_data.append((train_ske, train_labels, test_ske, test_labels))
