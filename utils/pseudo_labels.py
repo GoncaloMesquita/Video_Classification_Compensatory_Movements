@@ -12,15 +12,15 @@ import pickle
 import numpy as np
 
 
-def pseudo_label(model, test_loader, device, save_dir, model_name, patient, treshold_labels, method):
+def pseudo_label(model, test_loader, device, save_dir, model_name, patient, treshold_labels, method, input_size, label_names):
 
     pseudo_labels = []
     
     if method == 'ig':
-        pseudo_labels.append(gradient_integrated(test_loader, model_name, model, patient, device, treshold_labels))
+        pseudo_labels.append(gradient_integrated(test_loader, model_name, model, patient, device, treshold_labels, input_size, label_names))
     
     elif method == 'vg':
-        pseudo_labels.append(vanilla_gradients(test_loader, model_name, model, patient, device, treshold_labels))
+        pseudo_labels.append(vanilla_gradients(test_loader, model_name, model, patient, device, treshold_labels, input_size, label_names))
     
     # elif method == 'grad_cam':
     #     pseudo_labels.append(grad_cam(test_loader, criterion, model_name, model, patient, device, treshold_labels))
@@ -29,12 +29,14 @@ def pseudo_label(model, test_loader, device, save_dir, model_name, patient, tres
     return pseudo_labels
 
 
-def gradient_integrated(test_loader, model_name, model, patient, device, treshold_labels):
+def gradient_integrated(test_loader, model_name, model, patient, device, treshold_labels, input_size, label_names):
 
     model.eval()
     if model_name == 'LSTM':
         model.train()
+        
     binary_map = []
+    alpha_percentil = 90
     
     for batch_idx, (inputs, targets, lengths, inputs2) in enumerate(test_loader):
         
@@ -42,95 +44,128 @@ def gradient_integrated(test_loader, model_name, model, patient, device, treshol
         lengths = lengths.to('cpu')
         
         inputs.requires_grad = True
+        batch_binary_map = []
+
         
-        if model_name == 'moment':
-            ig_gradients = ig_grad(inputs, model, lengths, 0, baseline=None, steps=5)
-        else: 
-            ig = IntegratedGradients(model)
-            ig_gradients = ig.attribute(inputs, baselines=inputs * 0, target=0, additional_forward_args=lengths)
-        
-        slc = torch.relu(ig_gradients)
-        
-        if model_name != 'LSTM':
-            slc = smooth_gradients(slc, kernel_size=8)
-        saliency = torch.nn.functional.interpolate(slc.unsqueeze(0), size=(slc.shape[1], 33), mode='nearest').squeeze(0)
-        
-        map = torch.zeros_like(saliency)
-        
-        for i in range(saliency.shape[0]):
-            map[i] = (saliency[i] - saliency[i].min()) / (saliency[i].max() - saliency[i].min())
-        
-        # still need to revise this for several batches
-        if len(treshold_labels) == 1:
-            for i in range(0,map.shape[0]):
-                binary_map.append((map[i][0:lengths[i]].sum(dim=1) < treshold_labels[0]).int().detach().cpu().numpy())
-        else:
+        for j in range (0, len(label_names)):
+            if model_name == 'moment':
+                ig_gradients = ig_grad(inputs, model, lengths, j, baseline=None, steps=5)
+            else: 
+                ig = IntegratedGradients(model)
+                ig_gradients = ig.attribute(inputs, baselines=inputs *0, target=j, additional_forward_args=lengths)
+            
+            slc = torch.relu(ig_gradients)
+            
+            if model_name != 'LSTM':
+                slc = smooth_gradients(slc, kernel_size=8)
+            saliency = torch.nn.functional.interpolate(slc.unsqueeze(0), size=(slc.shape[1], input_size), mode='nearest').squeeze(0)
+            
+            map = torch.zeros_like(saliency)
+            
+            for i in range(saliency.shape[0]):
+                map[i] = (saliency[i] - saliency[i].min()) / (saliency[i].max() - saliency[i].min())
+                    
             for i in range(map.shape[0]):
                 
-                values = map[i][:lengths[i]].sum(axis=1).detach().cpu().numpy()  
-                bi_map = np.full(values.shape, np.nan) 
+                values = map[i][:lengths[i]].sum(axis=1).detach().cpu().numpy()
+                alpha_threshold = np.percentile(values, alpha_percentil)  
                 
-                bi_map[values > treshold_labels[1]] = 0  
-                bi_map[values < treshold_labels[0]] = 1  
+                bi_map = np.full(values.shape, np.nan)
+                bi_map[values > alpha_threshold] = 0  
+                bi_map[values <= alpha_threshold] = 1  
                 
-                binary_map.append(bi_map)
+                if targets[i, j] == 1:
+                    bi_map[i,j] = 1
+                
+                batch_binary_map.append(bi_map)
+                
+            torch.cuda.empty_cache()
         
-        torch.cuda.empty_cache()
+        batch_binary_map = np.array(batch_binary_map).T  # Transpose to make rows as batch and columns as labels
+        binary_map.append(batch_binary_map)
+    
+    # Combine all batches into a single dataset
+    binary_map = np.vstack(binary_map)
         
     return binary_map
 
 
-def vanilla_gradients(test_loader,  model_name, model, patient, device, treshold_labels):\
+def vanilla_gradients(test_loader, model_name, model, patient, device, treshold_labels, input_size, label_names):
 
     model.eval()
     if model_name == 'LSTM':
         model.train()
         
     binary_map = []
-    
-    for batch_idx, (inputs, targets, lengths, inputs2) in enumerate(test_loader):
+    alpha_percentil = 75
+    maps_labels  = []
+    for j in range(0, len(label_names)):
         
-        inputs, targets = inputs.to(device, non_blocking=True).float(), targets.to(device, non_blocking=True).float()
-        lengths = lengths.to('cpu')
+        batch_binary_map = []  
+        maps = []
+                
+        for batch_idx, (inputs, targets, lengths, inputs2) in enumerate(test_loader):
         
-        inputs.requires_grad = True
-        
-        if model_name == 'moment':
-            outputs = model(inputs)
-        else: 
-            outputs = model(inputs, lengths)
+            inputs, targets = inputs.to(device, non_blocking=True).float(), targets.to(device, non_blocking=True).float()
+            lengths = lengths.to('cpu')
+            inputs.requires_grad = True
             
-        loss = outputs[:, 0].sum()
-        grads = torch.autograd.grad(loss, inputs, create_graph=False)[0]
 
-        slc = torch.relu(grads)
-        
-        if model_name != 'LSTM':
-            slc = smooth_gradients(slc, kernel_size=8)
-        saliency = torch.nn.functional.interpolate(slc.unsqueeze(0), size=(slc.shape[1], 33), mode='nearest').squeeze(0)
-        
-        map = torch.zeros_like(saliency)
-        
-        for i in range(saliency.shape[0]):
-            map[i] = (saliency[i] - saliency[i].min()) / (saliency[i].max() - saliency[i].min())
-        
-        # still need to revise this for several batches
-        if len(treshold_labels) == 1:
-            for i in range(0,map.shape[0]):
-                binary_map.append((map[i][0:lengths[i]].sum(dim=1) < treshold_labels[0]).int().detach().cpu().numpy())
+            saliency = Saliency(model)
             
-        else:
-            for i in range(map.shape[0]):
+            if model_name == 'moment':
+                grads = saliency.attribute(inputs, target=j)
+            else:
+                grads = saliency.attribute(inputs, target=j, additional_forward_args=lengths)
                 
-                values = map[i][:lengths[i]].sum(axis=1).detach().cpu().numpy()  
-                bi_map = np.full(values.shape, np.nan) 
+            slc = torch.relu(grads)
+            
+            if model_name != 'LSTM':
+                slc = smooth_gradients(slc, kernel_size=8)
+            saliency = torch.nn.functional.interpolate(slc.unsqueeze(0), size=(slc.shape[1], input_size), mode='nearest').squeeze(0)
+            
+            map = torch.zeros_like(saliency)
+            
+            for i in range(saliency.shape[0]):
+                map[i] = (saliency[i] - saliency[i].min()) / (saliency[i].max() - saliency[i].min())
+
+                values = map[i][:lengths[i]].sum(axis=1).detach().cpu().numpy()
+                maps.append(values)
                 
-                bi_map[values > treshold_labels[1]] = 0  
-                bi_map[values < treshold_labels[0]] = 1  
-                
-                binary_map.append(bi_map)
+        maps_labels.append(maps)
         
+    for i in range(maps_labels.shape[0]):
+        
+        alpha_threshold = np.percentile(values, alpha_percentil)  
+        
+        bi_map = np.full(values.shape, np.nan)
+        bi_map[values > alpha_threshold] = 0  
+        bi_map[values <= alpha_threshold] = 1  
+        
+        # Ensure pseudo label is 1 if the target is 1
+        if targets[i, j] == 1:
+            bi_map[j] = 1
+        
+        batch_binary_map.append(bi_map.tolist())
+    
+        # Combine binary maps for all labels into a single dataset row
+        batch_binary_map = np.array(batch_binary_map).T  # Transpose to make rows as batch and columns as labels
+        binary_map.append(batch_binary_map)
+    
+    # Combine all batches into a single dataset
+    binary_map = np.vstack(binary_map)
     return binary_map
+
+
+def save_thresholds_and_maps(thresholds, maps, model_name, patient):
+    path = f'dataset/thresholds_maps/{model_name}'
+    os.makedirs(path, exist_ok=True)
+    
+    with open(os.path.join(path, f'thresholds_{patient+1}.pkl'), 'wb') as f:
+        pickle.dump(thresholds, f)
+    
+    with open(os.path.join(path, f'maps_{patient+1}.pkl'), 'wb') as f:
+        pickle.dump(maps, f)
 
 
 def ig_grad(inputs, model, lengths, target_label_idx, baseline=None, steps=5):

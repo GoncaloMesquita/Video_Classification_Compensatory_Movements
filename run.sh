@@ -13,31 +13,9 @@ path_trial="trials"
 # Run the Python script with torchrun
 # python -m torch.distributed.run --nproc_per_node=4 main.py  \
 
-# python3 main.py  \
-#     --model_name moment \
-#     --input_size 99 \
-#     --hidden_size 192 \
-#     --num_layers 1 \
-#     --num_labels 6 \
-#     --dropout 0.16 \
-#     --batch_size 16 \
-#     --epochs 100 \
-#     --learning_rate 0.0001 \
-#     --patience 5 \
-#     --delta 0.0 \
-#     --clip_value 0.9 \
-#     --threshold 0.5 0.4 0.5 0.35 0.30000000000000004 0.1 \
-#     --eta 0.0001 \
-#     --mode pseudo-label \
-#     --data_label dataset/labels_per_person.pt \
-#     --data_skeletons dataset/data_skeletons_per_person.pt \
-#     --data_true_dir dataset/frame_level_labels.pt \
-#     --checkpoint Results/moment/moment_bs16_lr1.000e-04_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta1.000e-05_ptTrue/saved_models/moment_0_best.pth \
-#     --save_dir Results/ \
-#     --method ig \
-#     --treshold_labels 2 3.5\
-#     --n_device 0
 
+
+# RUN THE PSEUDO-LABELING
 
 # python3 main.py  \
 #     --model_name MLP \
@@ -90,25 +68,58 @@ path_trial="trials"
 #     --n_device 0
 
 
+# NORMAL RUN
+
+# python3 main.py  \
+#     --model_name AcT \
+    # --input_size 34 \
+    # --hidden_size 192 \
+    # --num_seq 2000 \
+    # --num_people 20 \
+    # --n_dim 2 \
+    # --num_layers 1 \
+    # --num_labels 38 \
+    # --dropout 0.20 \
+    # --batch_size 16 \
+    # --epochs 100 \
+    # --learning_rate 0.0001 \
+    # --patience 3 \
+    # --delta 0 \
+    # --clip_value 0.7 \
+#     --threshold 0.5 0.4 0.5 0.35 0.30000000000000004 0.1 \
+#     --eta 0.000001 \
+#     --mode train \
+    # --data_label dataset/MMAct_data_label_video_3_level.pt \
+    # --data_skeletons dataset/MMAct_data_person.pt \
+#     --data_trial trials \
+#     --save_dir Results/ \
+#     --n_device 0
+
+
+# CREATE THE PSEUDO-LABELS
+
 python3 main.py  \
     --model_name AcT \
     --input_size 34 \
     --hidden_size 192 \
-    --num_seq 2000 \ 
+    --num_seq 2000 \
+    --num_people 20 \
+    --n_dim 2 \
     --num_layers 1 \
-    --num_labels 6 \
+    --num_labels 38 \
     --dropout 0.20 \
-    --batch_size 4 \
-    --epochs 10 \
+    --batch_size 16 \
+    --epochs 100 \
     --learning_rate 0.0001 \
     --patience 3 \
     --delta 0 \
     --clip_value 0.7 \
-    --threshold 0.5 0.4 0.5 0.35 0.30000000000000004 0.1 \
-    --eta 0.000001 \
-    --mode train \
-    --data_label Video_Classification_Compensatory_Movements/dataset/MMAct_data_label_video_3_level.pt \
-    --data_skeletons dataset/data_skeletons_per_person.pt \
-    --data_trial trials \
+    --eta 0.0001 \
+    --mode pseudo-label \
+    --data_label dataset/MMAct_data_label_video_3_level.pt \
+    --data_skeletons dataset/MMAct_data_person.pt \
+    --checkpoint Video_Classification_Compensatory_Movements/Results/MMAct_AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_0.400_0.500_0.350_0.300_0.100_eta1.000e-06_ptFalse/saved_models/AcT_0_best.pth \
     --save_dir Results/ \
+    --method vg \
+    --treshold_labels 4.5\
     --n_device 0

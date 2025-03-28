@@ -90,16 +90,17 @@ def train_I(args, label_names, dataset_name):
     args.optuna = False
     cross_train_losses, cross_val_losses, metrics_test, auc_test = [], [], [], []
     mean_fpr = np.linspace(1e-6, 1, 100)
-    n_splits = 18
+    n_splits = args.num_people
     mode = 'mode'
     X_t_2 , X_val_2, X_test_2 = None, None , None
     
     fold_save_dir = os.path.join(args.save_dir, f"saved_models")
     os.makedirs(fold_save_dir, exist_ok=True)
     
-    device = torch.device(f'cuda:{args.n_device}' if torch.cuda.is_available() else 'cpu')
-    if torch.cuda.is_available():
-        cudnn.benchmark = True
+    # device = torch.device(f'cuda:{args.n_device}' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
+    # if torch.cuda.is_available():
+    #     cudnn.benchmark = True
 
     cross_val_data, index_keep = load_data(args.data_label, args.data_skeletons, dataset_name, args.input_size, args.num_people, args.n_dim)    
     
@@ -135,7 +136,7 @@ def train_I(args, label_names, dataset_name):
                 print("Training...")
                 
                 train_loss, targets, sigmoid_output = training(model, train_loader, optimizer, criterion, device, args.save_dir, args.model_name, args.threshold, args.clip_value, args.optuna, epoch, scaler)
-                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "train", args.first_label)
+                plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "train", args.first_label, label_names)
                 epoch_train_losses.append(train_loss)
                 
                 print(f"Train Loss: {train_loss:.4f}")
@@ -144,12 +145,10 @@ def train_I(args, label_names, dataset_name):
                 
                 print("Validation...")
 
-                val_loss, targets , predictions, sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
+                val_loss, targets , sigmoid_output = validate(model, val_loader, criterion, device, args.model_name, args.threshold, args.optuna)
                 
                 plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "validation", args.first_label, label_names)
-                
-                scheduler.step()
-                
+                                
                 epoch_val_losses.append(val_loss)
                 print(f"Validation Loss: {val_loss:.4f}")
                 
@@ -177,7 +176,7 @@ def train_I(args, label_names, dataset_name):
             model , criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device, args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim)
             model.to(device)
             
-            pseudo_label(model, test_loader, device, args.save_dir, args.model_name, i, args.treshold_labels, args.method)
+            pseudo_label(model, test_loader, device, args.save_dir, args.model_name, i, args.treshold_labels, args.method, args.input_size, label_names )
 
         elif args.mode == 'visualization':
             
@@ -201,20 +200,20 @@ def train_I(args, label_names, dataset_name):
             model, criterion, optimizer, scheduler, scaler = create_model(args.model_name, args.input_size, args.hidden_size, args.num_layers, args.num_labels, args.dropout, args.checkpoint, "test", args.pretrained, device,  args.learning_rate, args.eta, args.epochs, args.num_seq, args.n_dim )
             model.to(device)
         
-            _ , targets , predictions, sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
+            _ , targets , sigmoid_output = validate(model, test_loader, criterion, device, args.model_name, args.threshold, args.optuna)
             
-            auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label)
+            auc_cross = plot_auc_curves(targets, sigmoid_output, i, n_splits, mean_fpr, "testing", args.first_label, label_names)
             auc_test.append(auc_cross)
             
-            metrics_cross = metrics(targets, predictions, "test", args.save_dir, args.model_name)
-            metrics_test.append(metrics_cross)
+            # metrics_cross = metrics(targets, predictions, "test", args.save_dir, args.model_name)
+            # metrics_test.append(metrics_cross)
             if mode == 'test':
                 mode = 'train'       
 
     if args.mode == 'visualization' or args.mode == 'pseudo-label':
         return   
     
-    metrics_evaluate(metrics_test, args.save_dir, args.model_name)
+    # metrics_evaluate(metrics_test, args.save_dir, args.model_name)
     plot_auc_test(auc_test, args.save_dir, args.model_name, mean_fpr, label_names )
         
 
@@ -376,7 +375,7 @@ if __name__ == "__main__":
                  'drinking', 'pocket_out', 'pocket_in', 'sitting', 'using_phone_desk', 'talking_on_phone_desk', 
                  'standing_up', 'carrying_light', 'carrying_heavy', 'Carrying_light']
 
-    args.save_dir = f"Video_Classification_Compensatory_Movements/{args.save_dir}/{dataset_name}_{args.model_name}"
+    args.save_dir = f"{args.save_dir}/{dataset_name}_{args.model_name}"
     os.makedirs(args.save_dir, exist_ok=True)
     
     

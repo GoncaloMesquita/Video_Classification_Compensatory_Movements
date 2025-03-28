@@ -32,41 +32,34 @@ def training(model, dataloader, optimizer, criterion, device, save_dir, model_na
         
         optimizer.zero_grad()
 
-        with torch.amp.autocast(device_type='cuda'):
 
-            if model_name == 'moment':  
-                outputs = model(inputs)
-                
-            elif model_name == 'moment+dino':
-                inputs2 = inputs2.to(device, non_blocking=True).float()
-                outputs = model(inputs, inputs2)
-                
-            else:
-                outputs = model(inputs, lengths)
+        if model_name == 'moment':  
+            outputs = model(inputs)
             
-            loss = criterion(outputs, targets)
-        scaler.scale(loss).backward()
-        # loss.backward()
+        elif model_name == 'moment+dino':
+            inputs2 = inputs2.to(device, non_blocking=True).float()
+            outputs = model(inputs, inputs2)
+            
+        else:
+            outputs = model(inputs, lengths)
+            
+        loss = criterion(outputs, targets)
+        loss.backward()
         
         if clip_value is not None:
             utils.clip_grad_value_(model.parameters(), clip_value)
                             
-        scaler.step(optimizer)
-        scaler.update()   
-        # optimizer.step()
+        optimizer.step()
         running_loss += loss.item()
         
         sigmoid_outputs = torch.sigmoid(outputs) 
-        predicted = sigmoid_outputs > thresholds
         all_sigmoid_outputs.append(sigmoid_outputs.detach().cpu().numpy())
         all_targets.append(targets.cpu().detach().numpy())
-        all_predictions.append(predicted.cpu().detach().numpy())
     
     if optuna:
         return running_loss / len(dataloader)
     
     all_targets = np.concatenate(all_targets, axis=0)
-    all_predictions = np.concatenate(all_predictions, axis=0)
     all_sigmoid_outputs = np.concatenate(all_sigmoid_outputs, axis=0) 
     
     # metrics(all_targets, all_predictions, "train", save_dir, model_name)
@@ -100,16 +93,13 @@ def validate(model, val_loader, criterion, device, model_name, thresholds, optun
             val_loss += loss.item()
             
             sigmoid_outputs = torch.sigmoid(outputs) 
-            predicted = sigmoid_outputs > thresholds.to(inputs.device)
             
             all_sigmoid_outputs.append(sigmoid_outputs.detach().cpu().numpy())
             all_targets.append(targets.cpu().numpy())
-            all_predictions.append(predicted.cpu().numpy())
 
         
     val_loss /= len(val_loader)
     all_targets = np.concatenate(all_targets, axis=0)
-    all_predictions = np.concatenate(all_predictions, axis=0)
     all_sigmoid_outputs = np.concatenate(all_sigmoid_outputs, axis=0)
     
     if optuna:
@@ -118,5 +108,5 @@ def validate(model, val_loader, criterion, device, model_name, thresholds, optun
     
     # _ = metrics(all_targets, all_predictions, mode, save_dir, model_name)
     torch.cuda.empty_cache()
-    return val_loss, all_targets, all_predictions, all_sigmoid_outputs
+    return val_loss, all_targets, all_sigmoid_outputs
 

@@ -360,10 +360,8 @@ def normalize_skeletons(skeletons):
                 
                 # Normalize: center at hip midpoint and scale by shoulder width
                 normalized_joints = (joints - center) / (shoulder_width + 1e-8)  # Add small epsilon to avoid division by zero
-
-   
                 
-                normalized_frames.append(normalized_joints.tolist())
+                normalized_frames.append(normalized_joints.flatten().tolist())
             
             normalized_trials.append(normalized_frames)
         
@@ -506,7 +504,7 @@ def plot_auc_curves(targets, predictions, fold, n_splits, mean_fpr, mode, first_
     return data
 
 
-def plot_auc_test(data, output, model_name, mean_fpr, first_label, label_names):
+def plot_auc_test(data, save_dir, model_name, mean_fpr, label_names):
     
     data = np.array(data, dtype=object)
     tprs, fprs, aucs, folds = np.array(data[:, 0]), np.array(data[:, 1]), np.array(data[:, 2]), np.array(data[:, 3])
@@ -576,7 +574,7 @@ def plot_auc_test(data, output, model_name, mean_fpr, first_label, label_names):
             ax[j].axis('off')
             
         plt.tight_layout()
-        plt.savefig(f'{output}/auc_curves_normal_scale_part{fig_idx+1}.png')
+        plt.savefig(f'{save_dir}/auc_curves_normal_scale_part{fig_idx+1}.png')
         plt.close()
     
     # Second set of figures - Log scale ROC curves
@@ -612,7 +610,7 @@ def plot_auc_test(data, output, model_name, mean_fpr, first_label, label_names):
             ax[j].axis('off')
             
         plt.tight_layout()
-        plt.savefig(f'{output}/auc_curves_log_part{fig_idx+1}.png')
+        plt.savefig(f'{save_dir}/auc_curves_log_part{fig_idx+1}.png')
         plt.close()
     
     # Third set of figures - TN vs FN curves
@@ -651,7 +649,7 @@ def plot_auc_test(data, output, model_name, mean_fpr, first_label, label_names):
             ax[j].axis('off')
             
         plt.tight_layout()
-        plt.savefig(f'{output}/TN_vs_FN_part{fig_idx+1}.png')
+        plt.savefig(f'{save_dir}/TN_vs_FN_part{fig_idx+1}.png')
         plt.close()
     
     return
