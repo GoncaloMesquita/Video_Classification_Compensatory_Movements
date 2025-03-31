@@ -1,0 +1,89 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-e348c27c-9335-4712-9b86-3d12789ae448
+Extension host agent listening on /tmp/code-e348c27c-9335-4712-9b86-3d12789ae448
+
+[15:05:53] 
+
+
+
+
+[15:05:53] Extension host agent started.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:54] [<unknown>][5774d9b6][ExtensionHostConnection] New connection established.
+[15:05:54] [<unknown>][d9a6437c][ManagementConnection] New connection established.
+[15:05:54] [<unknown>][5774d9b6][ExtensionHostConnection] <2517764> Launched Extension Host Process.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:58] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:05:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+New EH opened, aborting shutdown
+[15:10:53] New EH opened, aborting shutdown
+[15:10:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:10:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:10:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:10:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:15:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:15:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:15:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:15:56] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:20:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:20:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:20:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:20:57] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:26:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:26:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:26:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:26:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:32:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:32:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:32:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:32:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:38:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.282.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:38:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.284.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:38:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.288.0]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.
+[15:38:02] [/zfsauton2/home/gmesquit/.vscode-server/extensions/ms-toolsai.jupyter-2025.2.0-linux-x64]: Extension is not compatible with Code 1.97.2. Extension requires: ^1.98.0.

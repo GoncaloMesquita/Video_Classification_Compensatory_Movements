@@ -1,0 +1,110 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-45633a2f-ca89-4018-a47c-ad69f1771616
+Extension host agent listening on /tmp/code-45633a2f-ca89-4018-a47c-ad69f1771616
+
+[06:33:42] 
+
+
+
+
+[06:33:42] Extension host agent started.
+[06:33:42] [<unknown>][93871c84][ExtensionHostConnection] New connection established.
+[06:33:42] [<unknown>][a5a399e1][ManagementConnection] New connection established.
+[06:33:43] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:43] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:43] [<unknown>][93871c84][ExtensionHostConnection] <2797986> Launched Extension Host Process.
+[06:33:43] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:43] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:43] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:45] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:46] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:46] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:48] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:51] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:51] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:52] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:52] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:53] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:53] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:54] Getting Manifest... github.copilot
+[06:33:54] Getting Manifest... github.copilot-chat
+[06:33:55] Installing extension: github.copilot {
+  productVersion: { version: '1.98.2', date: '2025-03-12T13:32:45.399Z' },
+  pinned: false,
+  operation: 3,
+  isApplicationScoped: false,
+  donotVerifySignature: false,
+  context: { clientTargetPlatform: 'win32-x64' },
+  profileLocation: Er {
+    scheme: 'file',
+    authority: '',
+    path: '/zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json',
+    _fsPath: '/zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json'
+  }
+}
+[06:33:55] Installing extension: github.copilot-chat {
+  productVersion: { version: '1.98.2', date: '2025-03-12T13:32:45.399Z' },
+  pinned: false,
+  operation: 3,
+  isApplicationScoped: false,
+  donotVerifySignature: false,
+  context: { clientTargetPlatform: 'win32-x64' },
+  profileLocation: Er {
+    scheme: 'file',
+    authority: '',
+    path: '/zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json',
+    _fsPath: '/zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json'
+  }
+}
+[06:33:55] Getting Manifest... github.copilot-chat
+[06:33:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:55] Getting Manifest... github.copilot
+[06:33:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:55] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:59] Extension signature verification result for github.copilot: Success. Internal Code: 0. Executed: true. Duration: 3089ms.
+[06:33:59] Extension signature verification result for github.copilot-chat: Success. Internal Code: 0. Executed: true. Duration: 2766ms.
+[06:33:59] Extracted extension to file:///zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.25.1: github.copilot-chat
+[06:33:59] Renamed to /zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.25.1
+[06:33:59] [/zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-chat-0.24.1]: This extension is using the API proposal 'chatParticipantPrivate' that is not compatible with the current version of VS Code.
+[06:33:59] Marked extension as removed github.copilot-chat-0.24.1
+[06:33:59] Extension installed successfully: github.copilot-chat file:///zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json
+[06:33:59] Extracted extension to file:///zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.293.0: github.copilot
+[06:33:59] Renamed to /zfsauton2/home/gmesquit/.vscode-server/extensions/github.copilot-1.293.0
+[06:33:59] Marked extension as removed github.copilot-1.250.0
+[06:33:59] Marked extension as removed github.copilot-1.251.0
+[06:33:59] Marked extension as removed github.copilot-1.252.0
+[06:33:59] Marked extension as removed github.copilot-1.253.0
+[06:33:59] Marked extension as removed github.copilot-1.266.0
+[06:33:59] Marked extension as removed github.copilot-1.267.0
+[06:33:59] Marked extension as removed github.copilot-1.254.0
+[06:33:59] Marked extension as removed github.copilot-1.271.0
+[06:33:59] Marked extension as removed github.copilot-1.270.0
+[06:33:59] Marked extension as removed github.copilot-1.275.0
+[06:33:59] Marked extension as removed github.copilot-1.272.0
+[06:33:59] Marked extension as removed github.copilot-1.277.0
+[06:33:59] Marked extension as removed github.copilot-1.282.0
+[06:33:59] Marked extension as removed github.copilot-1.284.0
+[06:33:59] Marked extension as removed github.copilot-1.288.0
+[06:33:59] Extension installed successfully: github.copilot file:///zfsauton2/home/gmesquit/.vscode-server/extensions/extensions.json
+[06:35:33] [<unknown>][a5a399e1][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[06:35:34] [<unknown>][93871c84][ExtensionHostConnection] <2797986> Extension Host Process exited with code: 0, signal: null.
+Cancelling previous shutdown timeout
+[06:35:34] Cancelling previous shutdown timeout
+Last EH closed, waiting before shutting down
+[06:35:34] Last EH closed, waiting before shutting down
+[06:35:50] [<unknown>][21e497ed][ManagementConnection] New connection established.
+[06:35:50] [<unknown>][087cb933][ExtensionHostConnection] New connection established.
+[06:35:50] [<unknown>][087cb933][ExtensionHostConnection] <2798170> Launched Extension Host Process.

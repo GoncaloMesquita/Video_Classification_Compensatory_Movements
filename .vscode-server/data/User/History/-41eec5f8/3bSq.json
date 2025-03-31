@@ -1,0 +1,46 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "AcT",
+                "--input_size", "51",
+                "--hidden_size", "192",
+                "--seq_size", "2000",
+                "--num_layers", "1",
+                "--num_labels", "38",
+                "--dropout", "0.20",
+                "--num_patients", "20",
+                "--batch_size", "1",
+                "--epochs", "100",
+                "--learning_rate", "0.0001",
+                "--patience", "5",
+                "--delta", "0.005",
+                "--clip_value", "0.9",
+                "--threshold", "0.5", "0.4", "0.5", "0.35", "0.30000000000000004", "0.1",
+                "--eta", "0.0001",
+                "--mode", "pseudo-label",
+                "--data_label", "dataset/MMAct_data_label.pt",
+                "--data_skeletons", "dataset/MMAct_data_person.pt",
+                "--checkpoint", "Results/MMAct/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_eta1.000e-06_ptFalse/saved_models/AcT_1_best.pth",
+                "--save_dir", "Results/",
+                "--method", "ig",
+                "--treshold_labels", "4.5",
+                "--n_device", "3"
+            ],
+            "env": {
+                // "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True", 
+                // "CUDA_LAUNCH_BLOCKING": "1"
+
+            }
+
+        }
+    ]
+}

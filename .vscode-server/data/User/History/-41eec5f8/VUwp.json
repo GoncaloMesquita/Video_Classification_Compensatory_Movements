@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "AcT",
+                "--input_size", "34",
+                "--hidden_size", "192",
+                "--num_dimension", "2",
+                "--seq_size", "2000",
+                "--num_layers", "1",
+                "--num_labels", "38",
+                "--dropout", "0.20",
+                "--num_patients", "20",
+                "--batch_size", "16",
+                "--epochs", "100",
+                "--learning_rate", "0.0001",
+                "--patience", "10",
+                "--delta", "0",
+                "--clip_value", "0.9",
+                "--threshold", "0.5",
+                "--eta", "0.000001",
+                "--mode", "train",
+                "--data_label", "dataset/MMAct_data_label_single_video.pt",
+                "--data_skeletons", "dataset/MMAct_data_person_single_video.pt",
+                "--data_trial", "trials",
+                "--save_dir", "Results/",
+                "--n_device", "2"
+            ],
+            "env": {
+                // "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True", 
+                // "CUDA_LAUNCH_BLOCKING": "1"
+
+            }
+
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "SkateFormer",
+                "--input_size", "99",
+                "--hidden_size", "192",
+                "--seq_size", "769",
+                "--num_layers", "1",
+                "--num_labels", "6",
+                "--dropout", "0.20",
+                "--num_patients", "18",
+                "--batch_size", "1",
+                "--epochs", "100",
+                "--learning_rate", "0.0001",
+                "--patience", "5",
+                "--delta", "0.0",
+                "--clip_value", "0.9",
+                "--threshold", "0.5", "0.4", "0.5", "0.35", "0.30000000000000004", "0.1",
+                "--eta", "0.0001",
+                "--mode", "visualization",
+                "--data_label", "dataset/SERE_labels_per_person.pt",
+                "--data_skeletons", "dataset/SERE_data_skeletons_per_person.pt",
+                "--checkpoint", "Results/SERE/SkateFormer/SkateFormer_bs16_lr3.190e-05_hs1_th0.200_0.400_0.150_0.350_0.150_0.350_eta3.670e-06_ptTrue/saved_models/SkateFormer_0_best.pth",
+                "--save_dir", "Results/",
+                "--vis_patients", "11",
+                "--vis_trials", "0", "15", "65", 
+                "--method", "ig",
+                "--n_device", "3"
+            ],
+            "env": {
+                // "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True", 
+                // "CUDA_LAUNCH_BLOCKING": "1"
+
+            }
+
+        }
+    ]
+}

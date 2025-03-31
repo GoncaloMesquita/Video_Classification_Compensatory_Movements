@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Training",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": ".conda/envs/newenv/bin/python",
+            "args": [
+                "--model_name", "AcT",
+                "--input_size", "75",
+                "--hidden_size", "192",
+                "--num_layers", "1",
+                "--num_labels", "1",
+                "--dropout", "0.20",
+                "--batch_size", "16",
+                "--epochs", "100",
+                "--learning_rate", "0.0001",
+                "--patience", "5",
+                "--delta", "0.0",
+                "--clip_value", "0.9",
+                "--threshold", "0.5", "0.4", "0.5", "0.35", "0.30000000000000004", "0.1",
+                "--eta", "0.0001",
+                "--mode", "visualization",
+                "--data_label", "dataset/Toronto_Rehab_labels.pt",
+                "--data_skeletons", "dataset/Toronto_Rehab_skeletons.pt",
+                "--checkpoint", "Results/Toronto/AcT/AcT_bs16_lr1.000e-04_hs192_th0.500_eta1.000e-05_ptFalse/saved_models/AcT_0_best.pth",
+                "--save_dir", "Results/",
+                "--vis_patients", "0", "5", "10", "15",
+                "--vis_trials", "0", "20", "40", "60",
+                "--method", "vg",
+                "--n_device", "0"
+            ],
+            "env": {
+                "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+            }
+
+        }
+    ]
+}
